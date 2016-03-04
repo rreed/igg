@@ -1,0 +1,28 @@
+<h6 class="pagetitle">The Games</h6>
+
+<div class="inner pull_1">
+    <a href="/admin/games/" target="_blank"><button class="float-right">Manage Games</button></a>
+    <a href="/admin/games/add/" target="_blank"><button class="float-right">Add</button></a>
+
+    <a href="/games/suggest" title="Suggest a New Game"><button class="float-right">Suggest a New Game</button></a>
+
+    <p>Are we missing a game you want to see? <a href="/login">Log in</a> to suggest it!</p>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <td><h4>Name</h4></td>
+            <td><h4>Developer</h4></td>
+            <td><h4>Buzz</h4></td>
+        </tr>
+
+        {% for game in games %}
+            <tr>
+                <td>{{game.name}}</td>
+                <td>{{game.developer}}</td>
+                <td>|||||.........</td> <!-- buzz will go here -->
+            </tr>
+        {% endfor %}
+    </table>
+</div>

@@ -6,3 +6,6 @@ def register_routes(app):
 
     from .views import index
     route('/', index.index, methods=['GET'])
+
+    from .views import games
+    route('/games', games.list, methods=['GET'])
