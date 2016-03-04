@@ -9,3 +9,5 @@ def register_routes(app):
 
     from .views import games
     route('/games', games.list, methods=['GET'])
+    route('/games/add', games.add, methods=['GET'])
+    route('/games', games.create, methods=['POST'])
