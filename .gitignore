@@ -1,0 +1,6 @@
+.idea
+*.iml
+*.swp
+*.pyc
+
+dev.db
