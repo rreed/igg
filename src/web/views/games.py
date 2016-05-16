@@ -4,9 +4,9 @@ from ...data.db import db
 from ...data.models import Game
 
 # GET /games
-def list():
+def show():
     games = db.session.query(Game).all()
-    return render_template('games/list.tmpl', games=games)
+    return render_template('games/show.tmpl', games=games)
 
 # GET /games/add
 def add():

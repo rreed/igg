@@ -1,0 +1,76 @@
+<div class="header">
+    <div id="gem">
+        <!-- <img src="{{ STATIC_URL }}img/transparent.png" usemap="#gemmap"/> -->
+        <map name="gemmap">
+            <area href="{{ url_for('index.show') }}" shape="poly" coords="151,0, 182,11, 204,66, 210,131, 198,153, 12,153, 1,132, 7,67, 29,10, 58,0"
+            alt="Home :: Indie Games for Good" title="Home :: Indie Games for Good">
+        </map>
+    </div>
+    <div id="smlinks" class="headerchild">
+        <ul style="height:24px;">
+            <a href="https://www.facebook.com/iggmarathon"><li id="sm_facebook" class="smlinks"></li></a>
+            <a href="http://www.twitter.com/iggmarathon"><li id="sm_twitter" class="smlinks"></li></a>
+            <a href="http://steamcommunity.com/groups/iggmarathon"><li id="sm_steam" class="smlinks"></li></a>
+            <a href="https://plus.google.com/u/0/events/co6mo0lgk3vvqu5caq0g0d4fg34"><li id="sm_gplus" class="smlinks"></li></a>
+
+        </ul>
+    </div>
+    <a href="{{ url_for('index.show') }}"><div id="iggtitle"class="headerchild"></div></a>
+    <div id="faqnav"class="headerchild fade">
+        <h5 class="align-center fade eight-px condensed">
+            <a href="{{ url_for('faq.show') }}">FAQ</a>|
+            <a href="{{ url_for('crew.show') }}">The Crew</a>|
+            <a href="{{ url_for('contact.show') }}">Contact</a>
+        </h5>
+    </div> <!-- /faqnav -->
+    <div id="topnav"class="headerchild">
+        <div style="width:188px;padding-left: 5px;" class="headerleft headersmall">
+            <h4 class="eight-px expanded align-center">
+                <!-- marathon timer goes here -->
+            </h4>
+        </div>
+        <div style="width:184px;" class="headerleft headersmall">
+            <h4 class="eight-px expanded align-center">Total Donations</h4>
+        </div>
+        <div style="width:382px;" class="headerright headersmall">
+            <h4 class="eight-px expanded align-center">
+                <a href="{{ url_for('games.show') }}">Games</a>
+                <a href="{{ url_for('schedule.show') }}">Schedule</a>|
+                <a href="{{ url_for('interviews.show') }}">Interviews</a>|
+                <a href="{{ url_for('challenges.show') }}">Challenges</a>|
+                <a href="{{ url_for('raffles.show') }}">Prizes</a>
+            </h4>
+        </div>
+        <div class="clear"></div> <!--Clearing all them floats -->
+        <div style="padding-left:7px;width:188px;" class="headerleft headerlarge">
+            <h2 class="sixteen-px expanded lightshadow align-center">
+                <!-- marathon timer goes here -->
+            </h2>
+        </div>
+        <div style="width:180px;" class="headerleft headerlarge">
+
+        </div>
+        <div style="width:368px;padding-right:6px;padding-top:4px" class="headerright headerlarge">
+            <h4 class="eight-px expanded align-center deem-blue">
+                <!-- now playing, etc -->
+            </h4>
+        </div>
+    </div> <!-- /topnav -->
+
+    <div id="bottomnav"class="headerchild">
+        <div id="donatebutton">
+            <a class="yellow" href="{{ donate_now_url }}"><h2 class="sixteen-px align-center">Donate!</h2></a>
+        </div>
+        <div style="width:162px;height:56px;margin:0px;" class="headerleft headersmall">
+            <div style="width:162px;" class="headerleft headerlarge">
+                <h2 class="sixteen-px lightshadow expanded align-center">
+
+                </h2>
+            </div>
+            <div style="width:162px;" class="headerleft headersmall">
+
+            </div>
+        </div>
+    </div> <!-- /bottomnav -->
+
+</div> <!-- /header -->
