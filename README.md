@@ -29,3 +29,8 @@ Want to just run the server? `./manage.py runserver`, visit `localhost:5000` in 
 - All of the HTML is in `web/templates`. Flask is opinionated about its templating and expects [jinja2](http://jinja.pocoo.org/docs/dev/).
 - Route implementations are in `web/views`. The actual wiring of the routes happens in `web/routes.py`, should you want to add a new route.
 - Configuration is in `settings.py`. You can read any setting by importing app_config from settings, which is just a dictionary of every config option. _DO NOT ADD PRIVATE KEYS OR PASSWORDS TO THINGS TO THIS FILE, THAT WOULD BE VERY SAD_.
+
+## Tests
+There are actually unit tests! That's neat!
+
+Running them is simple: just run `py.test` from the root directory.
