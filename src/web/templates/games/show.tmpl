@@ -1,28 +1,32 @@
-<h6 class="pagetitle">The Games</h6>
+{% extends 'base.tmpl' %}
 
-<div>
-    <a href="/admin/games/" target="_blank"><button class="float-right">Manage Games</button></a>
-    <a href="{{url_for('games.add')}}" target="_blank"><button class="float-right">Add</button></a>
+{% block content %}
+    <h6 class="pagetitle">The Games</h6>
 
-    <a href="/games/suggest" title="Suggest a New Game"><button class="float-right">Suggest a New Game</button></a>
+    <div>
+        <a href="/admin/games/" target="_blank"><button class="float-right">Manage Games</button></a>
+        <a href="{{url_for('games.add')}}" target="_blank"><button class="float-right">Add</button></a>
 
-    <p>Are we missing a game you want to see? <a href="/login">Log in</a> to suggest it!</p>
-</div>
+        <a href="/games/suggest" title="Suggest a New Game"><button class="float-right">Suggest a New Game</button></a>
 
-<div>
-    <table>
-        <tr>
-            <td><h4>Name</h4></td>
-            <td><h4>Developer</h4></td>
-            <td><h4>Buzz</h4></td>
-        </tr>
+        <p>Are we missing a game you want to see? <a href="/login">Log in</a> to suggest it!</p>
+    </div>
 
-        {% for game in games %}
+    <div>
+        <table>
             <tr>
-                <td>{{game.name}}</td>
-                <td>{{game.developer}}</td>
-                <td>|||||.........</td> <!-- buzz will go here -->
+                <td><h4>Name</h4></td>
+                <td><h4>Developer</h4></td>
+                <td><h4>Buzz</h4></td>
             </tr>
-        {% endfor %}
-    </table>
-</div>
+
+            {% for game in games %}
+                <tr>
+                    <td>{{game.name}}</td>
+                    <td>{{game.developer}}</td>
+                    <td>|||||.........</td> <!-- buzz will go here -->
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

@@ -1,7 +1,11 @@
-<form method="post" action="/games">
-    <input type="text" name="name" placeholder="name"/>
-    <br>
-    <input type="text" name="developer" placeholder="developer"/>
-    <br>
-    <input type="submit">
-</form>
+{% extends 'base.tmpl' %}
+
+{% block content %}
+    <form method="post" action="/games">
+        <input type="text" name="name" placeholder="name"/>
+        <br>
+        <input type="text" name="developer" placeholder="developer"/>
+        <br>
+        <input type="submit">
+    </form>
+{% endblock %}
