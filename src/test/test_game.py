@@ -1,6 +1,6 @@
 import pytest
 
-from src.web.views.games import *
+from flask import url_for
 
 def test_show(client, db):
     res = client.get(url_for('games.show'))
