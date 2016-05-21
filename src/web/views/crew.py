@@ -1,2 +1,4 @@
+from flask import render_template
+
 def show():
-    pass
+    return render_template('crew/show.tmpl')

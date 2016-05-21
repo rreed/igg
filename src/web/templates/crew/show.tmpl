@@ -1,0 +1,65 @@
+{% extends 'base.tmpl' %}
+
+{% macro crewmember(name, image, steam, twitter, favorite, profile) -%}
+    <div class='crew-member'>
+        <div class='image'>
+            <img src="//static.iggmarathon.com/img/crew/{{ image }}"/>
+        </div>
+        <div class='crew-header'>
+            <span class='name'> {{ name }} </span>
+            <a href='https://twitter.com/{{twitter}}' class='twitter'>@{{ twitter }}</a>
+            <a href='https://steamcommunity.com/id/{{steam}}' class='steam'>Steam</a>
+            <span class='favorite'> Favorite Indie Game: {{ favorite }} </span>
+        </div>
+        <div class='profile'>
+            {{ profile }}
+        </div>
+    </div>
+{%- endmacro %}
+
+{% block content %}
+    {{ crewmember(
+        'Matt Rasmussen', 'matt.png', 'mrasmus', 'mrasmus', 'Bastion',
+        "Matt's been gaming since before he can remember; being fairly platform-agnostic as a kid, he grew a broad appreciation of all sorts of different games. It was his dumb idea that got us all into this mess. You'll recognize him on-stream as the hatted one making all the horrible puns."
+    )}}
+
+    {{ crewmember(
+        'Shamayel Daoud', 'shamayel.png', 'karamisaurus', 'karamisaurus', 'Jamestown',
+        "Shamayel has been into gaming since her father brought home an NES at the tender age of 6. A recent transplant to the Bay Area, Shamayel moved to get away from Matt's terrible puns. She delights in deadpan humor, hanging out in speakeasies, and leading long administrative meetings."
+    )}}
+
+    {{ crewmember(
+        'Zach Cameron', 'zach.png', 'aerothopter', 'aerothopter', 'Flower',
+        "Zach needs to get on and write his bio."
+    )}}
+
+    {{ crewmember(
+        'Elena Churilov', 'elena.png', 'fiskmeshi', 'foodshooter', 'Dwarf Fortress',
+        "Elena was raised on a steady diet of NetHack and Dungeon Keeper. Since then, she has taken up the task of writing nearly all of the text on this website. Although she has returned to her ancestral homeland to delve into the deeper mysteries of Psychology, she still makes a yearly pilgrimage back to us for IGG."
+    )}}
+
+    {{ crewmember(
+        'Daniel Ching', 'daniel.png', 'zizhou', 'zizhou', 'Frozen Synapse',
+        "Database wizard."
+    )}}
+
+    {{ crewmember(
+        'Garrett Williams', 'garrett.png', 'yggdrasil03', 'yggdrasil33', 'Minecraft',
+        "Garrett's a mystery wrapped in an enigma wrapped in a we failed the mission, because he's a spy."
+    )}}
+
+    {{ crewmember(
+        'Alexander Young', 'xander.png', 'blerggames', 'jovenismo', 'SpaceChem',
+        "Xander is a butt."
+    )}}
+
+    {{ crewmember(
+        'Colin Wheelock', 'colin.png', 'satchamobob', 'Satcha', 'Braid',
+        "Flips tables and doesn't afraid of anything."
+    )}}
+
+    {{ crewmember(
+        'David Emerson', 'david.png', 'daemerson', 'daemerson', 'Recettear',
+        "BLOGSPOT"
+    )}}
+{% endblock %}
