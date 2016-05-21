@@ -13,6 +13,16 @@ class DevConfig(object):
 
     APP_LOG_LEVEL = logging.DEBUG
 
+class TestConfig(object):
+    ENV = 'test'
+    HOST = 'localhost:5000'
+    DEBUG = True
+
+    SQLALCHEMY_DATABASE_URI = URL(drivername='sqlite', database='test.db')
+    SQLALCHEMY_SESSION_ARGS = {}
+
+    APP_LOG_LEVEL = logging.DEBUG
+
 class ProdConfig(object):
     ENV = 'prod'
     HOST = 'somewhere'
@@ -25,6 +35,7 @@ class ProdConfig(object):
 
 config_dict = {
     'dev': DevConfig,
+    'test': TestConfig,
     'prod': ProdConfig
 }
 

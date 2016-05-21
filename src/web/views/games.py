@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request, url_for
+from flask import flash, redirect, render_template, request, url_for
 
 from ...data.db import db
 from ...data.models import Game
@@ -17,8 +17,8 @@ def create():
     name = request.form.get('name')
     developer = request.form.get('developer')
 
-    assert name is not None
-    assert developer is not None
+    assert name
+    assert developer
 
     Game.create(
         name=name,
@@ -26,4 +26,4 @@ def create():
     )
 
     # TODO: flash a thing?
-    return redirect(url_for('games.list'))
+    return redirect(url_for('games.show'))
