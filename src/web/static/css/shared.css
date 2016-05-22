@@ -14,6 +14,10 @@ body {
     font: 8px pixChicago, Courier New, Arial, sans-serif;
     text-align: left;
     color: #fff;
+    line-height: 16px;
+    background-repeat: repeat-x;
+    background-color: #4781ca;
+    background-image: url(../img/bg.png);
 }
 
 h2 {
