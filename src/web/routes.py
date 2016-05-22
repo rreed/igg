@@ -7,6 +7,12 @@ def register_routes(app):
     from .views import index
     route('/', index.show, methods=['GET'])
 
+    from .views import login
+    route('/login', login.show, methods=['GET'])
+
+    from .views import register
+    route('/register', register.show, methods=['GET'])
+
     from .views import games
     route('/games', games.show, methods=['GET'])
     route('/games/add', games.add, methods=['GET'])
