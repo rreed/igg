@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "pixChicago";
+  src: url("../font/pixChicagoUpdate.eot" ); /* IE */
+  src: url( "../font/pixChicagoUpdate.ttf" );
+}
+
+@font-face {
+  font-family: "Mecha";
+  src: url("../font/Mecha_Bold.eot" ); /* IE */
+  src: url( "../font/Mecha_Bold.ttf" );
+}
+
 body {
     font: 8px pixChicago, Courier New, Arial, sans-serif;
     text-align: left;
