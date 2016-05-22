@@ -32,3 +32,6 @@ def register_routes(app):
 
     from .views import raffles
     route('/raffles', raffles.show, methods=['GET'])
+
+    from .views import donate
+    route('/donate', donate.show, methods=['GET'])
