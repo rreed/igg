@@ -1,6 +1,6 @@
 {% extends 'base.tmpl' %}
 
-{% macro crewmember(name, image, steam, twitter, favorite, profile) -%}
+{% macro crewmember(name, image, twitter, steam, favorite, profile) -%}
     <div class='crew-member'>
         <div class='image'>
             <img class="outline screenshot" src="//static.iggmarathon.com/img/crew/{{ image }}"/>
@@ -68,7 +68,7 @@
 
         {{ crewmember(
             'Colin Wheelock', 'colin.png', 'satchamobob', 'Satcha', 'Braid',
-            "Flips tables and doesn't afraid of anything."
+            "Colin is a games user researcher currently working for the Games and Playable Media program for UC Santa Cruz. He spends most of his time extolling the virtues of playtesting to his students or brushing up on the latest methodologies. When he's not conducting video game science, Colin partakes in a number of other activities, such as cooking, skiing, and caring way too much about pro wrestling. He currently holds the record for most tables flipped at IGG."
         )}}
 
         {{ crewmember(
