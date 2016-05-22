@@ -1,0 +1,40 @@
+.crew-member {
+    background-color: #aa7dc1;
+    border: 1px solid #9b70b5;
+    padding: 5px 10px;
+    margin: 3px 4px 3px 4px;
+}
+
+.crew-member img {
+    float: left;
+}
+
+.crew-member .info {
+    background-color: #553886;
+    border: 1px solid #4a3175;
+    width: 520px;
+    height: 155px;
+    margin: 4px 20px;
+    float: left;
+    padding: 5px 19px 0px 19px;
+}
+
+.crew-member .name {
+    font-size: 16px;
+    line-height: 28px;
+    margin-top: 4px;
+}
+
+.crew-member .info-bar {
+    color: #e9d8f1;
+    text-shadow: none;
+    display: inline-block;
+    font-size: 8px;
+    line-height: 22px;
+}
+
+.crew-member .info-bar a {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: -1px -1px rgba(0,0,0,.15)
+}

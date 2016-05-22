@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 
 <html lang="en">
+    <!-- something something Charlie Brown -->
     <head>
-        <meta charset="utf-8">
-        <title>Indie Games for Good</title>
+        {% block head %}
+            <meta charset="utf-8">
+            <title>Indie Games for Good</title>
+            <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='shared.css') }}"/>
+        {% endblock %}
     </head>
+
+
     <body>
         {% include 'navbar.tmpl' %}
 

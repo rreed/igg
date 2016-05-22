@@ -1,0 +1,78 @@
+body {
+    font: 8px pixChicago, Courier New, Arial, sans-serif;
+    text-align: left;
+    color: #fff;
+}
+
+h2 {
+    text-align: left;
+    font-weight: normal;
+    font-family: pixChicago, Arial, sans-serif;
+}
+
+img.outline {
+    border: 1px solid #513481
+}
+
+img.screenshot {
+    display: inline-block;
+    margin: 4px;
+}
+
+#main-container {
+    background-color: #c8a7d9;
+    border: 1px solid #b595ca;
+    margin: 0 auto;
+    width: 978px;
+}
+
+#pagetitle {
+    font: 64px Mecha, Arial, sans-serif;
+    line-height: 56px;
+    text-shadow: -1px -1px #8e6faf, 1px -1px #8e6faf, -1px 1px #8e6faf, 1px 1px #8e6faf;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    margin-left: 25px;
+    text-align: left;
+}
+
+.outer-border {
+    border: 1px solid #fff;
+    box-shadow: 1px 0px #d7cae1, inset 1px 0px #d7cae1, -1px 0px #d7cae1, inset -1px 0px #d7cae1;
+    margin-bottom: 13px;
+}
+
+.push-1 {
+    left: 79px;
+    position: relative;
+}
+
+.grid-10 {
+    width: 780px;
+}
+
+.light-shadow {
+    text-shadow: -1px -1px rgba(0,0,0,.15);
+}
+
+.dark-shadow {
+    text-shadow: -1px -1px rgba(0,0,0,.4)
+}
+
+.expanded {
+    letter-spacing: 1px;
+}
+
+.divider {
+    border-top: 1px solid #472e72;
+    border-bottom: 1px solid #71569b;
+}
+
+.clear {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
