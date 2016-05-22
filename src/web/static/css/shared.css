@@ -23,7 +23,15 @@ body {
 h2 {
     text-align: left;
     font-weight: normal;
-    font-family: pixChicago, Arial, sans-serif;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+h4 {
+    border: 0;
+    margin: 0;
+    padding: 0;
 }
 
 img.outline {
@@ -40,6 +48,7 @@ img.screenshot {
     border: 1px solid #b595ca;
     margin: 0 auto;
     width: 978px;
+    padding-top: 20px;
 }
 
 #pagetitle {
@@ -82,6 +91,7 @@ img.screenshot {
 .divider {
     border-top: 1px solid #472e72;
     border-bottom: 1px solid #71569b;
+    margin: 3px 0;
 }
 
 .clear {
