@@ -49,6 +49,11 @@ img.screenshot {
     margin: 4px;
 }
 
+p a {
+    color: #ffd642;
+    text-shadow: -1px -1px rgba(0,0,0,.4);
+}
+
 #main-container {
     background-color: #c8a7d9;
     border: 1px solid #b595ca;
@@ -172,6 +177,21 @@ img.screenshot {
     margin-bottom: 13px;
 }
 
+.inner-border {
+    padding: 5px 10px;
+    margin: 3px 4px 3px 4px;
+}
+
+.purple {
+    background-color: #553886;
+    border: 1px solid #4a3175;
+}
+
+.purple-header {
+    color: #e1d4e8;
+    text-shadow: none;
+}
+
 .push-1 {
     left: 79px;
     position: relative;
@@ -266,4 +286,12 @@ img.screenshot {
 
 .no-margin {
     margin: 0;
+}
+
+.no-top-margin {
+    margin-top: 0;
+}
+
+.no-left-margin {
+    margin-left: 0;
 }

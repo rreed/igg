@@ -1,0 +1,66 @@
+{% extends 'base.tmpl' %}
+
+{% block head %}
+    {{ super() }}
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/faq.css') }}"/>
+{% endblock %}
+
+{% block content %}
+    <div id="pagetitle">FAQ</div>
+    <div class="grid-10 push-1 no-left-margin no-top-margin outer-border">
+        <div class="inner-border purple">
+            <div id="faq">
+                <h2 class="text-large purple-header">What is this marathon about?</h2>
+                <p class="light-shadow">IGG Marathon is about encouraging people to donate to charity while generating exposure for independently developed games. We’re going to run a live stream of us playing indie games, and we’ll keep playing for as long as people keep donating.
+                    Unlike other gaming marathons, which only play a predetermined list of games, the games we play during IGG Marathon will be determined by requests from our donors, so our viewers will be directly involved in the experience. Since IGG's
+                    inception, we've raised $49393.16 and played for 333 hours.</p>
+                <div class="divider"></div>
+                <h2 class="text-large purple-header">Who are you guys?</h2>
+                <p class="light-shadow">We call ourselves the <a href="http://www.cloudboatarmada.com">Cloudboat Armada</a>. We’re a bunch of friends who love to play games and wanted do something positive with that. Inspired by the example of other charity gaming marathons like
+                    Desert Bus and Mario Marathon, we realized that there was a way for us to share our love of indie games with the world, to promote the hard work of independent game developers, and to raise money for a worthy cause <i>all at the same time.</i>                From that realization was born the Indie Games for Good Marathon.</p>
+                <div class="divider"></div>
+                <h2 class="text-large purple-header">How can I help?</h2>
+                <p class="light-shadow">You can help us out by donating! Your donation will be used to make sick children happier and make us play indie games for that much longer. Not only that, but each donation generates buzz, which helps us decide what games to play. In addition
+                    to donating, you can also help out by spreading the word about IGG Marathon!</p>
+                <div class="divider"></div>
+                <h2 class="text-large purple-header">What's "buzz"?</h2>
+                <p class="light-shadow">When you donate, you can choose a game to generate buzz for. The more you donate, the more buzz the game has, and the more likely we are to play it! This'll let us play the games you want us to play while making sure that the stream stays
+                    interesting for everyone.</p>
+                <div class="divider"></div>
+                <h2 class="text-large purple-header">The game I want isn't listed! Can I get it added to the list?</h2>
+                <p class="light-shadow">We're more than happy to take recommendations, so feel free tell us about the games you want through the <a href="/games/request/">suggestion box</a> on the Games page. Make sure to include information like who made the game and where we can
+                    find it. We'll try to get back to you ASAP about your request.</p>
+                <div class="divider"></div>
+                <h2 class="text-large purple-header">I’m an indie game developer. How can I help?</h2>
+                <p class="light-shadow">We want to hear from you! Email <a href="mailto:contact@iggmarathon.com">contact@iggmarathon.com</a> and let us know about your game. If we don’t already have everything needed to play it, or it's not released yet, we will work with you to
+                    get it on our marathon. Beyond that, one easy way to help out is to spread the word! Let your fans know about the event, and that they can donate to help get more of your game on the stream! If you want to help out more directly, that
+                    would be great! In the past, devs have given us game codes and prizes, done interviews with us, and even guest starred on the stream. If you'd be interested in doing something like that, or have your own idea for how you can help out,
+                    please let us know!</p>
+                <div class="divider"></div>
+                <h2 class="text-large purple-header">I don’t really know much about indie games. Can I still help?</h2>
+                <p class="light-shadow">Sure! Simply make a donation and don’t worry about picking a game; we promise to pick awesome games to play in the time you’ve given us.</p>
+                <div class="divider"></div>
+                <h2 class="text-large purple-header">How do I know it's all going to the right place?</h2>
+                <p class="light-shadow">The money you donate never actually touches our hands. All donations made through our system go directly to the charity's paypal account. </p>
+                <div class="divider"></div>
+                <h2 class="text-large purple-header">Why make an account on the site?</h2>
+                <p class="light-shadow">Making an account will let you keep track of your donations, and it'll let you change your mind about what game you want. Plus, having an account means that your donation will get you entered into any ongoing raffles and you can enter to win
+                    giveaways. And on top of that, you’ll be able to put your donation towards challenges. Basically, having an account lets you do all kinds of cool stuff!</p>
+                <div class="divider"></div>
+                <h2 class="text-large purple-header">How do raffles work?</h2>
+                <p class="light-shadow">We’ve wrangled up a ton of indie game codes and prizes, and we’re going to raffle them off! To enter a raffle, simply log in to your IGG account and go to the <a href="/raffles/">Prizes</a> page. From there, you can see what raffles are coming
+                    up and make a donation to enter any active raffle.</p>
+                <div class="divider"></div>
+                <h2 class="text-large purple-header">How do challenges work?</h2>
+                <p class="light-shadow">Challenges are things that our donors can make us do in addition to just playing games. A challenge can be something like a super difficult achievement in your favorite game, or something silly like making us balance a shoe on our heads while
+                    we play, or whatever else you can think of (as long as it’s PG). Just log in and go to the <a href="/challenges/">Challenges</a> page to see all challenges that are open for donations, or to propose your own!</p>
+                <div class="divider"></div>
+                <h2 class="text-large purple-header">Do you guys have a press release?</h2>
+                <p class="light-shadow"><a href="http://iggmarathon.s3.amazonaws.com/media/2015PressRelease.pdf">We do!</a> Feel free to distribute it.</p>
+                <div class="divider"></div>
+                <h2 class="text-large purple-header">I’ve got a question that you didn’t answer.</h2>
+                <p class="light-shadow">Send any questions, suggestions, or comments to <a href="mailto:contact@iggmarathon.com">contact@iggmarathon.com</a>, and we’ll do our best to get back to you.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
