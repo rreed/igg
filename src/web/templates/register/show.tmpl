@@ -3,7 +3,7 @@
 {% from 'formhelpers.tmpl' import render_field %}
 
 {% block content %}
-    <form method=post action="/register">
+    <form method="post" action="/register">
         <dl>
             {{ render_field(form.username) }}
             {{ render_field(form.email) }}

@@ -10,7 +10,7 @@ def show():
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
         salt = bcrypt.gensalt()
-        hashed_pw = bcrypt.hashpw(b'form.password.data', salt)
+        hashed_pw = bcrypt.hashpw(form.password.data.encode('utf-8'), salt)
         user = User.create(
             username=form.username.data,
             password=hashed_pw,

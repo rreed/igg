@@ -5,6 +5,8 @@ from flask import Flask
 from flask.ext.login import LoginManager
 
 from routes import register_routes
+from ..data.models import User
+from ..data.db import db
 
 def create_app(app_config):
     app = Flask(__name__)
@@ -23,6 +25,6 @@ def create_app(app_config):
 
     @login_manager.user_loader
     def load_user(id):
-        return User.get(int(id))
+        return db.session.query(User).filter_by(id=id)
 
     return app
