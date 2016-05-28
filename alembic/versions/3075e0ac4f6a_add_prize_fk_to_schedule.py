@@ -22,4 +22,4 @@ def upgrade():
 
 def downgrade():
     with op.batch_alter_table("schedule_entries") as batch_op:
-        batch_op.drop_column(sa.Column('prize_id', sa.Integer))
+        batch_op.drop_column(sa.Column('prize_id'))

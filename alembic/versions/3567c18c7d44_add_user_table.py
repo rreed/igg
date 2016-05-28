@@ -17,11 +17,6 @@ import sqlalchemy as sa
 
 
 def upgrade():
-    # id = Column('user_id', Integer , primary_key=True)
-    # username = Column('username', String(20), unique=True, index=True)
-    # password = Column('password', String(50))
-    # email = Column('email', String(50), unique=True, index=True)
-    # created_at = Column('created_at' , DateTime)
     op.create_table('users',
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('username', sa.String(20), unique=True, index=True),

@@ -1,1 +1,15 @@
-this space for rent
+{% extends 'base.tmpl' %}
+
+{% from 'formhelpers.tmpl' import render_field %}
+
+{% block content %}
+    <form method=post action="/register">
+        <dl>
+            {{ render_field(form.username) }}
+            {{ render_field(form.email) }}
+            {{ render_field(form.password) }}
+            {{ render_field(form.confirm) }}
+        </dl>
+        <p><input type="submit" value="Register"/></p>
+    </form>
+{% endblock %}
