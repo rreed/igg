@@ -192,6 +192,11 @@ p a {
     text-shadow: none;
 }
 
+.pink-header {
+    color: #e9d8f1;
+    text-shadow: none;
+}
+
 .push-1 {
     left: 79px;
     position: relative;
