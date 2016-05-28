@@ -3,5 +3,7 @@
 *.swp
 *.pyc
 
+secrets.json
+
 dev.db
 .cache
