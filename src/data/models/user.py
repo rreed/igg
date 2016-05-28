@@ -1,5 +1,6 @@
 from sqlalchemy.schema import Column
-from sqlalchemy.types import Integer, String
+from sqlalchemy.types import Integer, String, DateTime
+from sqlalchemy.ext.hybrid import hybrid_property
 
 from ..base import Base
 from ..mixins import CRUDMixin
@@ -9,17 +10,19 @@ class User(Base, CRUDMixin):
 
     id = Column('user_id', Integer , primary_key=True)
     username = Column('username', String(20), unique=True, index=True)
-    password = Column('password', String(50))
+    _password = Column('password', String(50))
     email = Column('email', String(50), unique=True, index=True)
-    created_at = Column('created_at' , DateTime)
+    created_at = Column('created_at', DateTime)
 
-    def __init__(self, username, password, email):
-        self.username = username
-        self.password = password
-        self.email = email
-        self.created_at = datetime.utcnow()
+    @hybrid_property
+    def password(self):
+        return self._password
 
-        def is_authenticated(self):
+    @password.setter
+    def _set_password(self, plaintext):
+        self._password = bcrypt.generate_password_hash(plaintext)
+
+    def is_authenticated(self):
         return True
 
     def is_active(self):

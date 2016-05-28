@@ -3,6 +3,7 @@ import os
 
 from flask import Flask
 from flask.ext.login import LoginManager
+from flask_bcrypt import Bcrypt
 
 from routes import register_routes
 
@@ -20,6 +21,8 @@ def create_app(app_config):
     login_manager = LoginManager()
     login_manager.init_app(app)
     login_manager.login_view = 'login.show'
+
+    bcrypt = Bcrypt(app)
 
     @login_manager.user_loader
     def load_user(id):
