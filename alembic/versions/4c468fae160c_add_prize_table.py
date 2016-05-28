@@ -29,7 +29,7 @@ def upgrade():
         sa.Column('is_code', sa.Boolean, default=True),
         sa.Column('entry_cost', sa.Float()),
         sa.Column('game_id', sa.Integer, nullable=False),
-        sa.ForeignKeyConstraint(['game_id'], ['game.id'], name='fk_prize_games_game_id'),
+        sa.ForeignKeyConstraint(['game_id'], ['games.id'], name='fk_prize_games_game_id'),
         sa.PrimaryKeyConstraint('id', name=op.f('pk_prizes'))
     )
 

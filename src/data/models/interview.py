@@ -11,5 +11,5 @@ class Interview(Base, CRUDMixin):
     name = Column('name', String())
     description = Column('name', String())
     visible = Column('visible', Boolean, default=False)
-    game_id = Column('game_id', Integer, ForiegnKey('game.id'), nullable=False)
+    game_id = Column('game_id', Integer, ForiegnKey('games.id'), nullable=False)
     developer = Column('developer', String())

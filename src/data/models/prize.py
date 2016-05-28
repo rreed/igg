@@ -18,4 +18,4 @@ class Prize(Base, CRUDMixin):
     is_giveaway = Column('is_auction', Boolean, default=False)
     is_code = Column('is_auction', Boolean, default=True)
     entry_cost = Column('entry_cost', Float)
-    game_id = Column('game_id', Integer, ForeignKey('game.id'), nullable=False)
+    game_id = Column('game_id', Integer, ForeignKey('games.id'), nullable=False)

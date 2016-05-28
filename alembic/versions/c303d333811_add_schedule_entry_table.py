@@ -28,8 +28,8 @@ def upgrade():
         # intentionally contrived so I can remind myself how to add them later. :)
         # sa.Column('raffle_id', sa.Integer, nullable=False),
         sa.Column('developer', sa.String()),
-        sa.ForeignKeyConstraint(['game_id'], ['game.id'], name='fk_schedule_entry_games_game_id'),
-        sa.ForeignKeyConstraint(['interview_id'], ['interview.id'], name='fk_schedule_entry_interviews_interview_id'),
+        sa.ForeignKeyConstraint(['game_id'], ['games.id'], name='fk_schedule_entry_games_game_id'),
+        sa.ForeignKeyConstraint(['interview_id'], ['interviews.id'], name='fk_schedule_entry_interviews_interview_id'),
         # sa.ForeignKeyConstraint(['raffle_id'], ['raffle.id'], name='fk_schedule_entry_raffles_raffle_id'),
         sa.PrimaryKeyConstraint('id', name=op.f('pk_schedule_entries'))
     )
