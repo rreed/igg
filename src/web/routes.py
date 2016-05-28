@@ -41,3 +41,6 @@ def register_routes(app):
 
     from .views import donate
     route('/donate', donate.show, methods=['GET'])
+
+    from .views import charities
+    route('/charities', charities.show, methods=['GET'])
