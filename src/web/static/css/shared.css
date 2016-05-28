@@ -80,6 +80,10 @@ p a {
     position: relative;
 }
 
+#footer {
+    margin: 5px 0;
+}
+
 #logo {
     position: absolute;
     margin: 0;
