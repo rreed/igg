@@ -1,11 +1,13 @@
 import json
 import os
 
-from flask import Flask
-from flask.ext.login import LoginManager
+from flask import Flask, redirect, url_for
+from flask.ext.login import LoginManager, current_user
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 
 from routes import register_routes
-from ..data.models import User
+from ..data.models import Challenge, Game, Interview, ScheduleEntry, User
 from ..data.db import db
 
 def create_app(app_config):
@@ -23,8 +25,25 @@ def create_app(app_config):
     login_manager.init_app(app)
     login_manager.login_view = 'login.show'
 
+    admin = Admin()
+    admin.init_app(app)
+    # flask-admin black magic
+    admin.add_view(AdminModelView(Challenge, db.session))
+    admin.add_view(AdminModelView(Game, db.session))
+    admin.add_view(AdminModelView(Interview, db.session))
+    admin.add_view(AdminModelView(ScheduleEntry  , db.session))
+
     @login_manager.user_loader
     def load_user(id):
-        return db.session.query(User).filter_by(id=id)
+        return db.session.query(User).filter_by(id=id).first()
 
     return app
+
+class AdminModelView(ModelView):
+    def is_accessible(self):
+        print current_user
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        # redirect to login page if user doesn't have access
+        return redirect(url_for('login', next=request.url))
