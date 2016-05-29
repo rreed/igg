@@ -7,7 +7,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
 from routes import register_routes
-from ..data.models import Challenge, Game, Interview, ScheduleEntry, User
+from ..data.models import Challenge, Game, Interview, Prize, ScheduleEntry, User
 from ..data.db import db
 
 def create_app(app_config):
@@ -30,6 +30,7 @@ def create_app(app_config):
     # flask-admin black magic
     admin.add_view(AdminModelView(Challenge, db.session))
     admin.add_view(AdminModelView(Game, db.session))
+    admin.add_view(AdminModelView(Prize, db.session))
     admin.add_view(AdminModelView(Interview, db.session))
     admin.add_view(AdminModelView(ScheduleEntry  , db.session))
 
@@ -41,7 +42,6 @@ def create_app(app_config):
 
 class AdminModelView(ModelView):
     def is_accessible(self):
-        print current_user
         return current_user.is_authenticated
 
     def inaccessible_callback(self, name, **kwargs):
