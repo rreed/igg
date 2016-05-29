@@ -3,7 +3,6 @@ import pytest
 from src.web import create_app
 from src.settings import app_config
 from src.data.db import DatabaseConnection
-from src.data.prepopulate import prepopulate_database
 
 from flask.ext.sqlalchemy import SQLAlchemy
 

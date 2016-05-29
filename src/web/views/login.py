@@ -10,6 +10,9 @@ from ...data.db import db
 def show():
     form = LoginForm(request.form)
     if request.method == 'POST':
+        if not form.password.data:
+            return redirect(url_for('login.show'))
+
         user = db.session.query(User).filter_by(username=form.username.data).first()
 
         if not user:
