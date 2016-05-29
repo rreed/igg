@@ -90,16 +90,34 @@
         </div>
     </div>
 
-    <div id="user-ui-guest" class="header-child">
-        <div class="header-large header-right">
-            <h2 class="text-large expanded center no-margin">
-                <a href="{{ url_for('login.show') }}">Login</a>
+    {% if not current_user.is_authenticated %}
+        <div id="user-ui-guest" class="header-child">
+            <div class="header-large header-right">
+                <h2 class="text-large expanded center no-margin">
+                    <a href="{{ url_for('login.show') }}">Login</a>
+                </h2>
+            </div>
+            <div class="header-small header-right">
+                <h4 class="text-small expanded center">
+                    <a href="{{ url_for('register.show') }}">Sign Up</a>
+                </h4>
+            </div>
+        </div>
+    {% else %}
+    <div id="user-ui" class="header-child">
+        <div class="header-large header-left no-padding">
+            <h2 class="text-large expanded lightshadow">
+                    {{ current_user.username }}
             </h2>
         </div>
-        <div class="header-small header-right">
+
+        <div class="clear"></div>
+        <div id='profile-links' class="header-small header-left">
             <h4 class="text-small expanded center">
-                <a href="{{ url_for('register.show') }}">Sign Up</a>
+                <a href="/profile/">My Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                <a href="/logout/">Logout</a>
             </h4>
         </div>
     </div>
+    {% endif %}
 </div>

@@ -239,6 +239,16 @@ button {
     width:136px;
 }
 
+#user-ui {
+    width: 337px;
+    height: 70px;
+    background-image: url(../img/header_user_ui.png);
+}
+
+#profile-links {
+    width: 310px;
+}
+
 .outer-border {
     border: 1px solid #fff;
     box-shadow: 1px 0px #d7cae1, inset 1px 0px #d7cae1, -1px 0px #d7cae1, inset -1px 0px #d7cae1;
