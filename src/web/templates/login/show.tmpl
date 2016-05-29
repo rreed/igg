@@ -3,11 +3,29 @@
 {% from 'formhelpers.tmpl' import render_field %}
 
 {% block content %}
-    <form method="post" action="/login">
-        <dl>
-            {{ render_field(form.username) }}
-            {{ render_field(form.password) }}
-        </dl>
-        <p><input type="submit" value="Log In"/></p>
-    </form>
+    <div id="pagetitle">Login</div>
+
+    <div class="grid-6 push-3 no-left-margin no-top-margin outer-border top">
+        <div class="form-header"></div>
+        <form method="post" action="/login">
+            <div class="inner-border form-body">
+                <div class="form-fields">
+                    <div style="display:none"><input type="hidden" name="csrfmiddlewaretoken" value="a5xu0aGfBQtUL1y1y1II7Pz4Yt0uFMHi"></div>
+                    <p>{{ render_field(form.username) }}</p>
+                    <p>{{ render_field(form.password) }}</p>
+                </div>
+
+                <p class="center">
+                    <a class="white" href="/password/reset/">Reset Your Password</a> ·
+                    <a class="white" href="{{url_for('register.show')}}">Register an Account</a>
+                </p>
+            </div>
+
+            <div class="inner-border form-footer" id="modalFooter">
+                <div class="form-actions right">
+                    <button type="submit" class="btn btn-primary">Log In</button>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}

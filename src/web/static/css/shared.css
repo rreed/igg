@@ -54,6 +54,24 @@ p a {
     text-shadow: -1px -1px rgba(0,0,0,.4);
 }
 
+dt {
+    float: left;
+    font-size: 11px;
+    width: 100px;
+}
+
+button {
+    background-color: #553886;
+    border: 1px solid #4a3175;
+    font: 8px pixChicago, Arial, sans-serif;
+    color: #ffffff;
+    height: 30px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-left: 7px;
+    cursor: pointer;
+}
+
 #main-container {
     background-color: #c8a7d9;
     border: 1px solid #b595ca;
@@ -252,6 +270,15 @@ p a {
     position: relative;
 }
 
+.push-3 {
+    left: 239px;
+    position: relative;
+}
+
+.grid-6 {
+    width: 460px;
+}
+
 .grid-10 {
     width: 780px;
 }
@@ -335,6 +362,10 @@ p a {
     line-height: 22px;
 }
 
+.right {
+    text-align: right;
+}
+
 .center {
     text-align: center;
 }
@@ -349,4 +380,38 @@ p a {
 
 .no-left-margin {
     margin-left: 0;
+}
+
+.white {
+    color: white;
+    text-shadow: -1px -1px rgba(0,0,0,.15);
+}
+
+.form-header {
+    background-color: #553886;
+    border: 1px solid #4a3175;
+    margin: 3px 4px 3px 4px;
+    padding: 5px 19px 0px 19px;
+    height: 33px;
+}
+
+.form-body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #aa7dc1;
+    border: 1px solid #9b70b5;
+}
+
+.form-body .center {
+    padding-top: 10px;
+    margin-bottom: 0;
+}
+
+.form-footer {
+    background-color: #9872b5;
+    border-color: #8b66aa;
+}
+
+.form-fields {
+    margin-bottom: 15px;
 }
