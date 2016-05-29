@@ -1,3 +1,4 @@
+from .challenge import Challenge
 from .game import Game
 from .interview import Interview
 from .prize import Prize
