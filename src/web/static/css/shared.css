@@ -20,11 +20,12 @@ body {
     background-image: url(../img/bg.png);
 }
 
-h2, h4, h5 {
-    font-weight: normal;
+h1, h2, h3, h4, h5, h6 {
     border: 0;
     margin: 0;
     padding: 0;
+    font-size: 100%;
+    font-weight: normal;
 }
 
 ul {
@@ -293,6 +294,16 @@ button {
     width: 780px;
 }
 
+.prefix-1 {
+    padding-left: 80px;
+}
+
+.list {
+    border-top-width: 0px;
+    margin-top: 0;
+    padding: 2px 4px 3px 4px;
+}
+
 .light-shadow {
     text-shadow: -1px -1px rgba(0,0,0,.15);
 }
@@ -392,6 +403,10 @@ button {
     margin-left: 0;
 }
 
+.no-right-margin {
+    margin-right: 0;
+}
+
 .white {
     color: white;
     text-shadow: -1px -1px rgba(0,0,0,.15);
@@ -424,4 +439,50 @@ button {
 
 .form-fields {
     margin-bottom: 15px;
+}
+
+.list-header-outer {
+    margin-bottom: 0px;
+    padding: 3px 4px;
+}
+
+.list-title-top {
+    height: 24px;
+    background-color: #553886;
+    border: 1px solid #4a3175;
+    line-height: 22px;
+}
+
+.list-title {
+    height: 24px;
+    line-height: 22px;
+    background-color: #553886;
+}
+
+.list-name {
+    float: left;
+    width: 294px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.list-thresh, .list-points {
+    float: left;
+    width: 113px;
+}
+
+.item {
+    margin-top: 1px;
+    border: 1px solid;
+    padding: 3px 19px 0px 19px;
+}
+
+.odd {
+    background-color: #aa7dc1;
+    border-color: #9b70b5;
+}
+
+.even {
+    background-color: #9872b5;
+    border-color: #8b66aa;
 }

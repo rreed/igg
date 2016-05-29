@@ -1,0 +1,42 @@
+{% extends 'base.tmpl' %}
+
+{% block head %}
+    {{ super() }}
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/challenges.css') }}"/>
+{% endblock %}
+
+{% macro render_challenge(id, name, threshold, pos) -%}
+    <div id="{{id}}" class="item {{pos}} list-title" original-title="Click a challenge to find out the details!">
+        <div class="list-name">
+            <h2>{{name}}</h2>
+        </div>
+        <div class="list-thresh">
+            <h2>{{threshold}}</h2>
+        </div>
+    </div>
+    <div class="list-content" data-id="34"></div>
+{%- endmacro %}
+
+
+{% block content %}
+    <div id="pagetitle">Challenges</div>
+    <div class="grid-6 push-3 outer-border no-left-margin no-top-margin">
+        <div class="inner-border purple form-body center">
+            <p>Come here to vote on challenges and make us do all sorts of crazy things on stream!</p>
+        </div>
+    </div>
+
+    <div class="grid-10 prefix-1 no-left-margin no-right-margin text-small">
+        <div class="outer-border list-header-outer no-top-margin">
+            <div class="item list-title-top">
+                <div class="list-name"><h1>Name</h1></div>
+                <div class="list-thresh"><h1>Progress</h1></div>
+            </div>
+        </div>
+        <div id="accordion" class="outer-border list">
+            {% for challenge in challenges %}
+                {{ render_challenge(challenge.id, challenge.name, challenge.bounty, loop.cycle('odd', 'even')) }}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

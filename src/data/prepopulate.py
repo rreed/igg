@@ -1,7 +1,7 @@
 import bcrypt
 import datetime
 
-from .models import Game, User
+from .models import Challenge, Game, User
 from .db import db
 from ..settings import app_config
 
@@ -20,4 +20,8 @@ def prepopulate_database():
         email='example@example.com',
         created_at=datetime.datetime.utcnow()
     )
+
+    Challenge.create(name='Straighten the painting!', user_id=user.id, total='1000.00')
+    Challenge.create(name='Tilt the painting!', user_id=user.id, total='500.00')
+
     print 'Prepopulated database with sample data'
