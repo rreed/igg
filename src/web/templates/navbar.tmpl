@@ -7,7 +7,7 @@
         </map>
     </div>
     <div id="social-media" class="header-child">
-        <ul style="height:24px;">
+        <ul>
             <a href="https://www.facebook.com/iggmarathon">
                 <li id="facebook" class="social-link-go"></li>
             </a>
@@ -33,15 +33,15 @@
         </h5>
     </div>
     <div id="top-nav"class="header-child">
-        <div style="width:188px;padding-left: 5px;" class="header-left header-small">
+        <div id="timer-text" class="header-left header-small">
             <h4 class="text-small expanded center">
                 Marathon Timer
             </h4>
         </div>
-        <div style="width:184px;" class="header-left header-small">
+        <div id="donation-text" class="header-left header-small">
             <h4 class="text-small expanded center">Total Donations</h4>
         </div>
-        <div style="width:382px;" class="header-right header-small">
+        <div id="upper-right-nav" class="header-right header-small">
             <h4 class="text-small expanded center">
                 <a href="{{ url_for('games.show') }}">Games</a>&nbsp;|&nbsp;
                 <a href="{{ url_for('schedule.show') }}">Schedule</a>&nbsp;|&nbsp;
@@ -51,18 +51,18 @@
             </h4>
         </div>
         <div class="clear"></div>
-        <div style="padding-left:7px;width:188px;" class="header-left header-large">
+        <div id="marathon-timer" class="header-left header-large">
             <h2 class="text-large expanded lightshadow center">
                 93:00/93:00 <!-- marathon timer goes here -->
             </h2>
         </div>
-        <div style="width:180px;" class="header-left header-large">
+        <div id="total-donations" class="header-left header-large">
             <h2 class="text-large expanded light-shadow center">
                 $<span class="info_total">33,520.00</span>
             </h2>
             <!-- dollars raised -->
         </div>
-        <div style="width:368px;padding-right:6px;padding-top:4px" class="header-right header-large">
+        <div id="marathon-status" class="header-right header-large">
             <h4 class="text-small expanded center deem-blue">
                 The marathon is over, thanks for watching!
                 <!-- now playing, etc etc -->
@@ -76,13 +76,13 @@
                 <h2 class="text-large center">Donate!</h2>
             </a>
         </div>
-        <div style="width:162px;height:56px;margin:0px;" class="header-left header-small">
-            <div style="width:162px;" class="header-left header-large">
+        <div id="next-hour" class="header-left header-small">
+            <div class="header-left header-large">
                 <h2 class="text-large lightshadow expanded center">
                     $839.83
                 </h2>
             </div>
-            <div style="width:162px;" class="header-left header-small">
+            <div class="header-left header-small">
                 <h4 class="text-small light-shadow expanded center">
                     To Unlock Hour #<span id="next-hour">94</span>
                 </h4>
@@ -91,12 +91,12 @@
     </div>
 
     <div id="user-ui-guest" class="header-child">
-        <div style="width:136px;" class="header-large header-right">
+        <div class="header-large header-right">
             <h2 class="text-large expanded center no-margin">
                 <a href="{{ url_for('login.show') }}">Login</a>
             </h2>
         </div>
-        <div style="width:136px;" class="header-small header-right">
+        <div class="header-small header-right">
             <h4 class="text-small expanded center">
                 <a href="{{ url_for('register.show') }}">Sign Up</a>
             </h4>

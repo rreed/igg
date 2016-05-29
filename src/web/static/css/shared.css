@@ -106,6 +106,10 @@ p a {
     margin-top: 36px;
 }
 
+#social-media ul {
+    height:24px;
+}
+
 #facebook {
     background: url(../img/social-links.png) 0px 0px;
 }
@@ -120,6 +124,44 @@ p a {
 
 #gplus {
     background: url(../img/social-links.png) -72px 0px;
+}
+
+#timer-text {
+    width: 188px;
+    padding-left: 5px;
+}
+
+#donation-text {
+    width:184px;
+}
+
+#upper-right-nav {
+    width:382px;
+}
+
+#marathon-timer {
+    padding-left: 7px;
+    width: 188px;
+}
+
+#total-donations {
+    width:180px;
+}
+
+#marathon-status {
+    width: 368px;
+    padding-right: 6px;
+    padding-top: 4px;
+}
+
+#next-hour {
+    width: 162px;
+    height: 56px;
+    margin: 0px;
+}
+
+#next-hour div {
+    width: 162px;
 }
 
 #faq-nav {
@@ -173,6 +215,10 @@ p a {
     width: 147px;
     height: 70px;
     background-image: url(../img/header_user_ui_guest.png);
+}
+
+#user-ui-guest div {
+    width:136px;
 }
 
 .outer-border {
