@@ -1,5 +1,5 @@
 from sqlalchemy.schema import Column, ForeignKey
-from sqlalchemy.types import Boolean, Integer, String
+from sqlalchemy.types import Boolean, Integer, String, Float
 
 from ..base import Base
 from ..mixins import CRUDMixin
