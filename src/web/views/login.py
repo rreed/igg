@@ -1,7 +1,7 @@
 import bcrypt
 
 from flask import render_template, request, redirect, url_for
-from flask.ext.login import login_user
+from flask.ext.login import login_user, logout_user
 from wtforms import Form, TextField, PasswordField
 
 from ...data.models import User
@@ -34,3 +34,7 @@ def show():
 class LoginForm(Form):
     username = TextField('Username')
     password = PasswordField('Password')
+
+def logout():
+    logout_user()
+    return redirect(url_for('index.show'))

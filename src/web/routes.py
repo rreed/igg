@@ -9,6 +9,7 @@ def register_routes(app):
 
     from .views import login
     route('/login', login.show, methods=['GET', 'POST'])
+    route('/logout', login.logout, methods=['GET'])
 
     from .views import register
     route('/register', register.show, methods=['GET', 'POST'])
