@@ -18,6 +18,7 @@ def create_app(app_config):
     with open(os.path.join(__location__, 'secrets.json')) as secrets_file:
         secrets = json.load(secrets_file)
         app.secret_key = secrets.get('app_secret')
+        app_config.SECRET_KEY = app.secret_key
 
     register_routes(app)
 

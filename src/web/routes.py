@@ -10,6 +10,8 @@ def register_routes(app):
     from .views import login
     route('/login', login.show, methods=['GET', 'POST'])
     route('/logout', login.logout, methods=['GET'])
+    route('/forgot_password', login.forgot_password, methods=['GET', 'POST'])
+    route('/reset_password', login.reset_password, methods=['GET', 'POST'])
 
     from .views import register
     route('/register', register.show, methods=['GET', 'POST'])
