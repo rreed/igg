@@ -7,7 +7,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
 from routes import register_routes
-from ..data.models import Challenge, Game, Interview, Prize, ScheduleEntry, User
+from ..data.models import Challenge, Game, Interview, MarathonInfo, Prize, ScheduleEntry, User
 from ..data.db import db
 
 def create_app(app_config):
@@ -30,9 +30,10 @@ def create_app(app_config):
     # flask-admin black magic
     admin.add_view(AdminModelView(Challenge, db.session))
     admin.add_view(AdminModelView(Game, db.session))
+    admin.add_view(AdminModelView(MarathonInfo, db.session))
     admin.add_view(AdminModelView(Prize, db.session))
     admin.add_view(AdminModelView(Interview, db.session))
-    admin.add_view(AdminModelView(ScheduleEntry  , db.session))
+    admin.add_view(AdminModelView(ScheduleEntry, db.session))
 
     @login_manager.user_loader
     def load_user(id):
