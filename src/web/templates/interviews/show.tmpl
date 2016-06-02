@@ -1,0 +1,26 @@
+{% extends 'base.tmpl' %}
+
+{% macro render_interview(id, name) -%}
+    <div id="{{id}}" class="item ui-state-active list-title">
+        <div class="list-name">
+            <h2>{{name}}</h2>
+        </div>
+    </div>
+{%- endmacro %}
+
+{% block content %}
+    <div id="pagetitle">Interviews</div>
+    <div class="grid-6 push-3 outer-border no-left-margin no-top-margin">
+        <div class="inner-border purple form-body center">
+            <p>We're lining up some great interviews this year; watch this page to find out who we'll be talking to!</p>
+        </div>
+    </div>
+
+    <div class="grid-10 prefix-1 no-left-margin no-right-margin text-small">
+        <div id="accordion" class="outer-border list">
+            {% for interview in interviews %}
+                {{ render_interview(interview.id, interview.name) }}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
