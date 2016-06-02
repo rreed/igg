@@ -1,0 +1,29 @@
+{% extends 'base.tmpl' %}
+
+{% block content %}
+    <div id="pagetitle">Your Donations</div>
+
+    <div class="grid-6 push-3 no-left-margin no-top-margin outer-border top">
+        <div class="form-header"></div>
+
+        <div class="inner-border form-body">
+            <div class="innerborder">
+                <ul style="padding-left:20px; list-style:disc;">
+                    <li>$75.00.</li>
+                    <li>$75.00 to see Hand of Fate.</li>
+                    <li>$75.00.</li>
+                    <li>$75.00.</li>
+                </ul>
+
+                <p>Thanks so much!</p>
+
+                <p>
+                    Note: If a donation you've made hasn't shown up yet, and you've gotten confirmation from PayPal that
+                    it went through, make sure to <a href="{{url_for('contact.show')}}">email us</a> and we'll work with you to
+                    figure out what the deal is. Sometimes PayPal takes some time to let us know, but if more than  an hour
+                    passes and it's not logged, we're happy to look into it.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
