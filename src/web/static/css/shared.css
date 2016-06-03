@@ -79,6 +79,7 @@ button {
     margin: 0 auto;
     width: 978px;
     padding-top: 20px;
+    overflow: auto;
 }
 
 #pagetitle {
@@ -248,6 +249,18 @@ button {
 
 #profile-links {
     width: 310px;
+}
+
+#tumblr-posts {
+    width: 620px;
+    margin-left: 19px;
+    float: left;
+}
+
+#twitter-timeline {
+    width: 300px;
+    margin-left: 10px;
+    float: left;
 }
 
 .outer-border {

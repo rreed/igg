@@ -1,6 +1,34 @@
 {% extends 'base.tmpl' %}
 
+
+{% macro render_post(title, body, date, link) -%}
+    <div class="outer-border">
+        <div class="inner-border purple">
+            <h2 class="text-large dark-shadow expanded">
+                <a href="{{link}}">{{title}}</a>
+            </h2>
+
+            <div class="divider"></div>
+            <p>{{body}}</p>
+            <p>
+                <a class="post-date" href="{{link}}">{{date}}</a>
+            </p>
+        </div>
+    </div>
+{%- endmacro %}
+
 {% block content %}
+    <div id="tumblr-posts">
+        {% for post in posts %}
+            {{render_post(
+                post.find('regular-title'),
+                post.find('regular-body'),
+                post.get('date'),
+                post.get('url')
+            )}}
+        {% endfor %}
+    </div>
+
     <!-- Twitter embed -->
     <div id="twitter-timeline">
         <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/iggmarathon" data-widget-id="378464610489098240">Tweets by @iggmarathon</a>
