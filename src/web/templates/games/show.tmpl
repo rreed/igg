@@ -1,29 +1,39 @@
 {% extends 'base.tmpl' %}
 
+{% macro render_game(id, name, developer, pos) -%}
+    <div data-id="{{id}}" class="item {{pos}} list-title">
+        <div class="list-name"><h2>{{name}}</h2></div>
+        <div class="list-dev"><h2>{{developer}}</h2></div>
+        <div class="list-thresh"><div class="progressbar" style="background-position: -124px 0px;"></div></div>
+    </div>
+{%- endmacro %}
+
+{% block head %}
+    {{ super() }}
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/games.css') }}"/>
+{% endblock %}
+
 {% block content %}
-    <h6 class="pagetitle">The Games</h6>
+    <div id="pagetitle">The Games</div>
 
-    <div>
-        <a href="/games/suggest" title="Suggest a New Game"><button class="float-right">Suggest a New Game</button></a>
-
-        <p>Are we missing a game you want to see? <a href="/login">Log in</a> to suggest it!</p>
+    <div class="inner pull-1">
+        <!-- game suggestion thingy should go here -->
+        <div class="clear"></div>
     </div>
 
-    <div>
-        <table>
-            <tr>
-                <td><h4>Name</h4></td>
-                <td><h4>Developer</h4></td>
-                <td><h4>Buzz</h4></td>
-            </tr>
+    <div class="grid-10 prefix-1 no-left-margin no-right-margin">
+        <div class="outer-border list-header-outer top">
+            <div class="item list-title-top">
+                <div class="list-name"><h1>Name</h1></div>
+                <div class="list-dev"><h1>Developer</h1></div>
+                <div class="list-thresh"><h1><a class="em-yellow" id="thresholdtooltip" original-title="Buzz is a measurement of donor interest towards games: It's how we figure out what to play.">(?)</a> Buzz</h1></div>
+            </div>
+        </div>
 
+        <div class="outer-border list">
             {% for game in games %}
-                <tr>
-                    <td>{{game.name}}</td>
-                    <td>{{game.developer}}</td>
-                    <td>|||||.........</td> <!-- buzz will go here -->
-                </tr>
+                {{ render_game(game.id, game.name, game.developer, loop.cycle('odd', 'even')) }}
             {% endfor %}
-        </table>
+        </div>
     </div>
 {% endblock %}

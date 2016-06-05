@@ -1,0 +1,18 @@
+.list-name {
+    float: left;
+    width: 294px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.list-dev {
+    float: left;
+    width: 320px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.list-thresh {
+    float: left;
+    width: 113px;
+}
