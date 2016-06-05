@@ -12,8 +12,6 @@ class Prize(Base, CRUDMixin):
     description = Column('description', String())
     quantity = Column('quantity', Integer, nullable=False)
     visible = Column('visible', Boolean)
-    start = Column('start', DateTime)
-    end = Column('end', DateTime)
     is_auction = Column('is_auction', Boolean, default=False)
     is_giveaway = Column('is_giveaway', Boolean, default=False)
     is_code = Column('is_code', Boolean, default=True)

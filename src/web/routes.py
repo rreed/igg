@@ -30,6 +30,7 @@ def register_routes(app):
 
     from .views import schedule
     route('/schedule', schedule.show, methods=['GET'])
+    route('/json/schedule', schedule.as_json, methods=['GET'])
 
     from .views import interviews
     route('/interviews', interviews.show, methods=['GET'])

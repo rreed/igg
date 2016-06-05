@@ -24,9 +24,9 @@ def upgrade():
         sa.Column('description', sa.String()),
         sa.Column('visible', sa.Boolean),
         sa.Column('game_id', sa.Integer, nullable=False),
-        sa.Column('interview_id', sa.Integer, nullable=False),
+        sa.Column('interview_id', sa.Integer),
         # intentionally contrived so I can remind myself how to add them later. :)
-        # sa.Column('raffle_id', sa.Integer, nullable=False),
+        # sa.Column('raffle_id', sa.Integer),
         sa.Column('developer', sa.String()),
         sa.ForeignKeyConstraint(['game_id'], ['games.id'], name='fk_schedule_entry_games_game_id'),
         sa.ForeignKeyConstraint(['interview_id'], ['interviews.id'], name='fk_schedule_entry_interviews_interview_id'),

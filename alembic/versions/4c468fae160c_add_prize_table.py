@@ -22,8 +22,6 @@ def upgrade():
         sa.Column('description', sa.String()),
         sa.Column('quantity', sa.Integer(), nullable=False),
         sa.Column('visible', sa.Boolean),
-        sa.Column('start', sa.DateTime(), nullable=False),
-        sa.Column('end', sa.DateTime(), nullable=False),
         sa.Column('is_auction', sa.Boolean, default=False),
         sa.Column('is_giveaway', sa.Boolean, default=False),
         sa.Column('is_code', sa.Boolean, default=True),

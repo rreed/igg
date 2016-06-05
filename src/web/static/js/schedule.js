@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $('#calendar').fullCalendar({
+        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
         height: 600,
         editable: false,
         //selectable: true,
@@ -17,27 +18,19 @@ $(document).ready(function() {
         themeButtonIcons: false,
         buttonText: {next: '❯❯', prev: '❮❮'},
         resources: [
+            {title: 'Games', id: 'game'},
+            {title: 'Interviews', id: 'interview'},
+            {title: 'Giveaways', id: 'prize'}
+        ],
+        eventSources:[
             {
-              name: 'Games',
-              id: 'game',
-              clickOffset: 0
-            },
-            {
-              name: 'Interviews',
-              id: 'interview',
-              clickOffset: 1
-            },
-            {
-              name: 'Giveaways',
-              id: 'raffle',
-              clickOffset: 2
+                url: '/json/schedule',
+                success: function(data, status, jqXHR) {data.forEach(convertServerEvent);}
             }
         ]
-        // eventSources:[
-        //     {
-        //         url: '/ajax/schedule/',
-        //         success: function(data, status, jqXHR) {data.forEach(convertServerEvent);}
-        //     }
-        // ]
     })
 });
+
+function convertServerEvent(e) {
+    e.changed = false;
+}

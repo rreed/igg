@@ -1,7 +1,7 @@
 import bcrypt
 import datetime
 
-from .models import Challenge, Game, Interview, User
+from .models import Challenge, Game, Interview, Prize, ScheduleEntry, User
 from .db import db
 from ..settings import app_config
 
@@ -28,6 +28,38 @@ def prepopulate_database():
     Challenge.create(name='Tilt the painting!', user_id=user.id, total='500.00')
 
     Interview.create(name='Test Interview', game_id=test_game.id)
-    Interview.create(name='Probably Kayin', game_id=brave_earth.id)
+    kayin = Interview.create(name='Probably Kayin', game_id=brave_earth.id)
+
+    now = datetime.datetime.now()
+    half_an_hour_earlier = now - datetime.timedelta(minutes=30)
+    half_an_hour_later = now + datetime.timedelta(minutes=30)
+
+    ScheduleEntry.create(
+        title='Play The Test Game',
+        game_id=test_game.id,
+        start=half_an_hour_earlier,
+        end=half_an_hour_later
+    )
+
+    ScheduleEntry.create(
+        title='Yell at Kayin',
+        game_id=brave_earth.id,
+        interview_id=kayin.id,
+        start=(now - datetime.timedelta(minutes=90)),
+        end=(now - datetime.timedelta(minutes=30))
+    )
+
+    prize = Prize.create(
+        title='Another Gunbunnies Code',
+        quantity=1,
+        game_id=test_game.id
+    )
+    ScheduleEntry.create(
+        title='Win a code',
+        game_id=test_game.id,
+        prize_id=prize.id,
+        start=(now + datetime.timedelta(minutes=30)),
+        end=(now + datetime.timedelta(minutes=90))
+    )
 
     print 'Prepopulated database with sample data'
