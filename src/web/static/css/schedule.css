@@ -1,0 +1,28 @@
+tr {
+    height: 20px;
+}
+
+#calendar {
+    margin: 0 19px;
+}
+
+.ui-widget-header {
+    border: 1px solid #aaaaaa;
+    color: #222222;
+    background: #cccccc;
+    font-weight: bold;
+}
+
+.fc-axis {
+    border: 1px solid #aaaaaa;
+    color: #222222;
+    background: #cccccc;
+    width: 50px!important;
+    text-align: right;
+}
+
+.ui-widget-content {
+    background: white;
+    border: 1px solid #aaaaaa;
+    vertical-align: top;
+}
