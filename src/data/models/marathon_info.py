@@ -23,8 +23,8 @@ class MarathonInfo(Base, CRUDMixin): # realistically almost always Update
         end = now + datetime.timedelta(hours=self.hours)
 
         if now < self.start:
-            return 'UPCOMING'
+            return 'PRE'
         elif self.start < now and now < end:
-            return 'STARTED'
+            return 'LIVE'
         else:
-            return 'ENDED'
+            return 'POST'

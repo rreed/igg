@@ -64,8 +64,20 @@
         </div>
         <div id="marathon-status" class="header-right header-large">
             <h4 class="text-small expanded center deem-blue">
-                The marathon is over, thanks for watching!
-                <!-- now playing, etc etc -->
+                {% if marathon_info.stage() == 'PRE' %}
+                    We're not quite ready to receive donations.
+                {% elif marathon_info.stage() == 'RUNUP' %}
+                    Donations are live, go donate now!
+                {% elif marathon_info.stage() == 'LIVE' %}
+                    <!-- wat -->
+                    {% if marathon_info.current_game_id != 2 %}
+                        Now Playing: {{ current_game.name }}
+                    {% else %}
+                        Setting up the next game, please stand by...
+                    {% endif %}
+                {% elif marathon_info.stage() == 'POST' %}
+                    The marathon is over, thanks for watching!
+                {% endif %}
             </h4>
         </div>
     </div>

@@ -45,7 +45,8 @@ def create_app(app_config):
         marathon_info = getattr(g, "marathon_info", None)
         if not marathon_info:
             marathon_info = g.marathon_info = db.session.query(MarathonInfo).first()
-        return dict(marathon_info=marathon_info)
+        current_game = db.session.query(Game).filter_by(id=marathon_info.current_game_id).first()
+        return dict(marathon_info=marathon_info, current_game=current_game)
 
     return app
 
