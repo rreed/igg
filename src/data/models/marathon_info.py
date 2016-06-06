@@ -20,7 +20,7 @@ class MarathonInfo(Base, CRUDMixin): # realistically almost always Update
 
     def stage(self):
         now = datetime.datetime.now()
-        end = now + datetime.timedelta(hours=self.hours)
+        end = self.start + datetime.timedelta(hours=self.hours)
 
         if now < self.start:
             return 'PRE'
