@@ -13,6 +13,7 @@
     <body>
         {% include 'navbar.tmpl' %}
 
+        {{ marathon_info.stage() }}
         <div id="main-container">
           {% block content %} {% endblock %}
 

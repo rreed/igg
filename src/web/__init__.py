@@ -1,7 +1,7 @@
 import json
 import os
 
-from flask import Flask, redirect, url_for
+from flask import Flask, g, redirect, url_for
 from flask.ext.login import LoginManager, current_user
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
@@ -39,6 +39,13 @@ def create_app(app_config):
     @login_manager.user_loader
     def load_user(id):
         return db.session.query(User).filter_by(id=id).first()
+
+    @app.context_processor
+    def inject_marathon_info():
+        marathon_info = getattr(g, "marathon_info", None)
+        if not marathon_info:
+            marathon_info = g.marathon_info = db.session.query(MarathonInfo).first()
+        return dict(marathon_info=marathon_info)
 
     return app
 

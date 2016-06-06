@@ -19,7 +19,7 @@ def upgrade():
     op.create_table('marathon_info',
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('total', sa.Float()),
-        sa.Column('stage', sa.Integer()),
+        sa.Column('start', sa.DateTime(), nullable=False),
         sa.Column('hours', sa.Integer()),
         sa.Column('next_hour_cost', sa.Float()),
         sa.Column('current_game_id', sa.Integer(), nullable=False),

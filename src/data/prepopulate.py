@@ -1,7 +1,7 @@
 import bcrypt
 import datetime
 
-from .models import Challenge, Game, Interview, Prize, ScheduleEntry, User
+from .models import Challenge, Game, Interview, MarathonInfo, Prize, ScheduleEntry, User
 from .db import db
 from ..settings import app_config
 
@@ -34,7 +34,7 @@ def prepopulate_database():
     half_an_hour_earlier = now - datetime.timedelta(minutes=30)
     half_an_hour_later = now + datetime.timedelta(minutes=30)
 
-    ScheduleEntry.create(
+    test_play = ScheduleEntry.create(
         title='Play The Test Game',
         game_id=test_game.id,
         start=half_an_hour_earlier,
@@ -60,6 +60,15 @@ def prepopulate_database():
         prize_id=prize.id,
         start=(now + datetime.timedelta(minutes=30)),
         end=(now + datetime.timedelta(minutes=90))
+    )
+
+    # change this to test things, but basically just assume we're in the middle of things
+    MarathonInfo.create(
+        start=(now - datetime.timedelta(hours=10)),
+        hours=20,
+        current_game_id=test_game.id,
+        next_game_id=brave_earth.id,
+        current_schedule_entry=test_play.id
     )
 
     print 'Prepopulated database with sample data'
