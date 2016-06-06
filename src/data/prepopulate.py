@@ -65,7 +65,8 @@ def prepopulate_database():
     # change this to test things, but basically just assume we're in the middle of things
     MarathonInfo.create(
         start=(now - datetime.timedelta(hours=10)),
-        hours=20,
+        hours=31,
+        total=12345.67,
         current_game_id=test_game.id,
         next_game_id=brave_earth.id,
         current_schedule_entry=test_play.id

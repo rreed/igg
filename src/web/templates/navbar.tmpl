@@ -58,9 +58,8 @@
         </div>
         <div id="total-donations" class="header-left header-large">
             <h2 class="text-large expanded light-shadow center">
-                $<span class="info_total">33,520.00</span>
+                $<span class="info_total">{{marathon_info.total}}</span>
             </h2>
-            <!-- dollars raised -->
         </div>
         <div id="marathon-status" class="header-right header-large">
             <h4 class="text-small expanded center deem-blue">
@@ -91,12 +90,12 @@
         <div id="next-hour" class="header-left header-small">
             <div class="header-left header-large">
                 <h2 class="text-large lightshadow expanded center">
-                    $839.83
+                    {{ marathon_info.next_hour_cost() }}
                 </h2>
             </div>
             <div class="header-left header-small">
                 <h4 class="text-small light-shadow expanded center">
-                    To Unlock Hour #<span id="next-hour">94</span>
+                    To Unlock Hour #<span id="next-hour">{{ marathon_info.hours + 1}}</span>
                 </h4>
             </div>
         </div>

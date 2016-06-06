@@ -18,7 +18,7 @@ import sqlalchemy as sa
 def upgrade():
     op.create_table('marathon_info',
         sa.Column('id', sa.Integer(), nullable=False),
-        sa.Column('total', sa.Float()),
+        sa.Column('total', sa.Float(), nullable=False),
         sa.Column('start', sa.DateTime(), nullable=False),
         sa.Column('hours', sa.Integer()),
         sa.Column('next_hour_cost', sa.Float()),
