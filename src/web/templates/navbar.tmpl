@@ -53,7 +53,7 @@
         <div class="clear"></div>
         <div id="marathon-timer" class="header-left header-large">
             <h2 class="text-large expanded lightshadow center">
-                93:00/93:00 <!-- marathon timer goes here -->
+            <span id="timer">{{marathon_info.elapsed() }}</span>/{{ marathon_info.hours }}:00 <!-- marathon timer goes here -->
             </h2>
         </div>
         <div id="total-donations" class="header-left header-large">

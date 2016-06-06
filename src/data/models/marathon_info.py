@@ -33,3 +33,13 @@ class MarathonInfo(Base, CRUDMixin): # realistically almost always Update
         # make up something like 20x per hour per hour to test for now
         next_hour_total = 20 * (20 * self.hours + 1)
         return next_hour_total - self.total
+
+    def elapsed(self):
+        now = datetime.datetime.now()
+        elapsed = now - self.start
+        seconds = elapsed.total_seconds()
+        hours = seconds // 60 // 60
+        minutes = (seconds  - (hours * 3600)) // 60
+
+        # pad the return values to make them two digits
+        return "{0:02d}:{1:02d}".format(int(hours), int(minutes))
