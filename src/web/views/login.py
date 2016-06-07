@@ -6,10 +6,12 @@ import json
 from flask import render_template, request, redirect, url_for
 from flask.ext.login import login_user, logout_user
 from wtforms import Form, TextField, PasswordField, HiddenField
+from flask.ext.mail import Message
 
 from ...data.models import User
 from ...data.db import db
 from ...settings import app_config
+from ...web.extensions import mail
 
 def show():
     form = LoginForm(request.form)
@@ -44,15 +46,21 @@ def forgot_password():
                 <button type='submit'>Reset your password</button>
             </form>"""
     else:
+        email = request.form['reset_email']
         payload = create_payload(request.form['reset_email'])
-        url = "/reset_password?%s" % get_url_keys(payload)
-        return """
+        url = "http://{}/reset_password?{}".format(app_config.HOST, get_url_keys(payload))
+
+        msg = Message('Reset your iggmarathon.com password', recipients=[email])
+        msg.html = """
             <p>
-                This will be an email.
+                Here is your password reset link for iggmarathon.com:
             </p>
             <a href="%(url)s">
                 %(url)s
             </a>""" % {"url": url}
+        mail.send(msg)
+
+        return redirect(url_for('login.show'))
 
 def reset_password():
     email = request.args.get('email')
