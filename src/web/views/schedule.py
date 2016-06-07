@@ -3,7 +3,7 @@ import json
 from flask import render_template, request
 
 from ...data.db import db
-from ...data.models import ScheduleEntry
+from ...data.models import MarathonInfo, ScheduleEntry
 
 def show():
     return render_template('schedule/show.tmpl')
@@ -34,3 +34,7 @@ def as_json():
         })
 
     return json.dumps(ret)
+
+def elapsed():
+    info = db.session.query(MarathonInfo).first()
+    return info.elapsed()
