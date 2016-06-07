@@ -5,17 +5,8 @@ from src.data.db import db as _db
 
 def setup_module(cls):
     cls.now = datetime.datetime.now()
-    cls.test_game = Game.create(name='Test Game', developer='Test Dev')
-    cls.test_play = ScheduleEntry.create(
-        title='Play The Test Game',
-        game_id=test_game.id,
-        start=(now - datetime.timedelta(minutes=30)),
-        end=(now + datetime.timedelta(minutes=30))
-    )
-
-def teardown_module(cls):
-    _db.session.query(Game).filter_by(name='Test Game').delete()
-    _db.session.commit()
+    cls.test_game = _db.session.query(Game).first()
+    cls.test_play = _db.session.query(ScheduleEntry).first()
 
 def test_stage_pre():
     info = MarathonInfo.create(
@@ -23,7 +14,8 @@ def test_stage_pre():
         hours=20,
         current_game_id=test_game.id,
         next_game_id=test_game.id,
-        current_schedule_entry=test_play.id
+        current_schedule_entry=test_play.id,
+        total=12345.67
     )
     assert info.stage() == 'PRE'
 
@@ -33,7 +25,8 @@ def test_stage_live():
         hours=20,
         current_game_id=test_game.id,
         next_game_id=test_game.id,
-        current_schedule_entry=test_play.id
+        current_schedule_entry=test_play.id,
+        total=12345.67
     )
     assert info.stage() == 'LIVE'
 
@@ -43,6 +36,7 @@ def test_stage_post():
         hours=20,
         current_game_id=test_game.id,
         next_game_id=test_game.id,
-        current_schedule_entry=test_play.id
+        current_schedule_entry=test_play.id,
+        total=12345.67
     )
     assert info.stage() == 'POST'
