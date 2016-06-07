@@ -1,6 +1,6 @@
 import requests
 
-from flask import render_template
+from flask import render_template, current_app
 from bs4 import BeautifulSoup
 
 from ...data.db import db

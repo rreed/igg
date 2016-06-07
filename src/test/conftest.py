@@ -8,14 +8,13 @@ from src.data.models import Game, ScheduleEntry, MarathonInfo
 
 from flask.ext.sqlalchemy import SQLAlchemy
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def app():
     app = create_app(app_config)
     return app
 
 @pytest.fixture(scope='session', autouse=True)
 def marathon_info_fixture():
-    print 'CREATING STUFF'
     now = datetime.datetime.now()
     test_game = Game.create(name='Test Game', developer='Test Dev')
 

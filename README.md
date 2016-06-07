@@ -34,3 +34,15 @@ Want to just run the server? `./manage.py runserver`, visit `localhost:5000` in 
 There are actually unit tests! That's neat!
 
 Running them is simple: just run `py.test` from the root directory.
+
+## Sending emails
+The minimal amount necessary to have Flask-Mail send an email is this:
+```
+from flask.ext.mail import Message
+from ...web.extensions import mail
+
+msg = Message('test subject', recipients=['dan@example.com'])
+msg.body = 'text body'
+msg.html = '<b>HTML</b> body'
+mail.send(msg)
+```
