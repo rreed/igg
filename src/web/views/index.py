@@ -9,7 +9,7 @@ from ...data.models import Game
 def show():
     tumblr_xml = requests.get('http://blog.iggmarathon.com/api/read').text
 
-    soup = BeautifulSoup(tumblr_xml)
+    soup = BeautifulSoup(tumblr_xml, 'html.parser')
     posts = soup.tumblr.posts.find_all('post')
 
     return render_template('index.tmpl', posts=posts)
