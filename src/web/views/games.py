@@ -1,4 +1,5 @@
-from flask import render_template
+from flask import render_template, request, redirect, url_for
+from wtforms import Form, TextField
 
 from ...data.db import db
 from ...data.models import Game
@@ -7,3 +8,16 @@ from ...data.models import Game
 def show():
     games = db.session.query(Game).all()
     return render_template('games/show.tmpl', games=games)
+
+def suggest():
+    form = GameSuggestionForm(request.form)
+    if request.method == 'POST':
+        # actually suggest a game
+        return redirect(url_for('games.suggest'))
+
+    return render_template('games/suggest.tmpl', form=form)
+
+class GameSuggestionForm(Form):
+    name = TextField('Name')
+    developer = TextField('Developer')
+    site = TextField('Site')

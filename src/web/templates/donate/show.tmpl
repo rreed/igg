@@ -1,5 +1,11 @@
 {% extends 'base.tmpl' %}
 
+{% block head %}
+    {{ super() }}
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/donate.css') }}"/>
+{% endblock %}
+
+
 {% block content %}
     <div id='pagetitle'>Donate Now</div>
 

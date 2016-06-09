@@ -1,0 +1,26 @@
+{% extends 'base.tmpl' %}
+
+{% from 'formhelpers.tmpl' import render_field %}
+
+{% block content %}
+    <div id="pagetitle">Suggest A Game</div>
+
+    <div class="grid-6 push-3 no-left-margin no-top-margin outer-border top">
+        <div class="form-header"></div>
+        <form method="post" action="/games/suggest">
+            <div class="inner-border form-body">
+                <div class="form-fields">
+                    <p>{{ render_field(form.name) }}</p>
+                    <p>{{ render_field(form.developer) }}</p>
+                    <p>{{ render_field(form.site) }}</p>
+                </div>
+            </div>
+
+            <div class="inner-border form-footer">
+                <div class="form-actions right">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -18,6 +18,7 @@ def register_routes(app):
 
     from .views import games
     route('/games', games.show, methods=['GET'])
+    route('/games/suggest', games.suggest, methods=['GET', 'POST'])
 
     from .views import faq
     route('/faq', faq.show, methods=['GET'])
