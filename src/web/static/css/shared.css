@@ -73,6 +73,35 @@ button {
     cursor: pointer;
 }
 
+input {
+    margin-left: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+    width: 190px;
+}
+
+input[type=radio] {
+    width: 20px;
+}
+
+label {
+    text-align: right;
+    line-height: 26px;
+    width: 150px;
+    display: block;
+    float: left;
+    padding-right: 10px;
+}
+
+textarea {
+    margin: 2px 2px 2px 5px;
+    padding: 2px 4px;
+    height: 80px;
+    resize: both;
+    max-width: 400px;
+    width: 300px;
+}
+
 #main-container {
     background-color: #c8a7d9;
     border: 1px solid #b595ca;
@@ -498,4 +527,16 @@ button {
 .even {
     background-color: #9872b5;
     border-color: #8b66aa;
+}
+
+.well {
+    display: inline-block;
+    padding: 10px 30px;
+    margin: 10px 0;
+    background-color: rgba(0,0,0,.1);
+    border: 1px solid;
+    border-bottom-color: rgba(255,255,255,.3);
+    border-top-color: rgba(0,0,0,.5);
+    border-left-color: rgba(0,0,0,.15);
+    border-right-color: rgba(0,0,0,.15);
 }

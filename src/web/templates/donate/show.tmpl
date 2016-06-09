@@ -1,1 +1,133 @@
-this space for rent
+{% extends 'base.tmpl' %}
+
+{% block content %}
+    <div id='pagetitle'>Donate Now</div>
+
+    <div class="grid-10 push-1 outer-border no-top-margin no-left-margin donate">
+            <form id="submit-donation" class="form-horizontal" action="" method="POST">
+
+                <div class="inner-border form-header">
+                    <h2 class="text-large expanded dark-shadow">Required Information</h2>
+                </div>
+                <div class="inner-border form-body">
+                    <div class="form-item">
+                        <label for="amount">Amount:</label>
+                        <span class="textaddon">$</span>
+                        <input id="amount" name="amount" class="addedonto" size="16" type="text" placeholder="10.00" tabindex="1">
+                        <span id="time-roi"></span>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="form-item">
+                        <label for="split">How should we split?:</label>
+                        <input type="radio" id="radio-even" name="split" data-shows="evenly" value="even" checked="">Evenly
+                        <input type="radio" id="radio-uneven" name="split" data-shows="not-evenly" value="uneven">Custom
+                        <div class="clear"></div>
+                    </div>
+
+                    <div id="evenly" class="split-div">
+                    </div>
+                    <div id="not-evenly" class="split-div">
+                        <div class="form-item">
+                            <div class="uneven-row">
+                                <label for="firstRecipient">Child's Play Charity:</label>
+                                $<input type="text" id="firstRecipient" class="uneven-split" name="amount_1">
+                            </div>
+                            <div class="clear"></div>
+                            <div>
+                                <label for="thirdRecipient">EFF:</label>
+                                $<input type="text" id="thirdRecipient" class="uneven-split" name="amount_3">
+                            </div>
+                            <div class="clear"></div>
+                            <div>
+                                <label for="secondRecipient">GiveDirectly:</label>
+                                $<input type="text" id="secondRecipient" class="uneven-split" name="amount_2">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="email">E-mail:</label>
+                        <input id="email" name="email" size="16" type="text" placeholder="jsmith@example.com" tabindex="2">
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="inner-border form-header">
+                    <h2 class="text-large expanded dark-shadow">Donation Log Information</h2>
+                </div>
+
+                <div class="inner-border form-body">
+                    <div class="form-item">
+                        <label for="name">Name on Donation:</label>
+                        <input id="name" name="name" size="16" type="text" placeholder="John Smith" tabindex="4">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="form-item">
+                        <label for="url">Homepage:</label>
+                        <input id="url" name="url" size="16" type="text" placeholder="http://iggmarathon.com/" tabindex="5" value="">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="form-item">
+                        <label for="twitter">Twitter Handle:</label>
+                        <span class="textaddon">@</span>
+                        <input id="twitter-handle" name="twitter" class="addedonto" size="16" type="text" placeholder="iggmarathon" tabindex="6" value="">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="form-item">
+                        <label for="comment">Comment to the team:</label>
+                        <textarea id="comment" name="comment" tabindex="7" class="textarea-both"></textarea>
+
+                    </div><div class="clear"></div>
+                    <div class="form-item left">
+                        <p>This is how your donation will look on the log:</p>
+                        <div class="well">
+                            <span id="donationPreview">words words words</span>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="inner-border form-header">
+                    <h2 class="text-large expanded dark-shadow">Games, Prizes, and Challenges</h2>
+                </div>
+                <div class="inner-border form-body">
+                    <div class="form-item">
+                        <label for="id_game">Request a Game:</label>
+                            <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+                            <input placeholder="Type Here!" type="text" id="id_game_combo" class="ui-autocomplete-input" autocomplete="off">
+                            <input type="button" value="full list" id="id_vis_button" onclick="$(&quot;#id_game&quot;).toggle()">
+                            <select name="game" id="id_game" tabindex="11" style="display: none;">
+                                <option value="" selected="selected">No Request</option>
+                                <!-- list of games here -->
+                            </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="list">
+                        <div class="item list-title even"><div class="list-name"><h2 id="donateGameName">Select a game to see details and status.</h2></div></div>
+                        <div class="list-content" id="donateGameInfo"></div>
+                    </div><div class="clear"></div>
+                </div>
+                <div class="inner-border form-body">
+                    <div class="list">
+                        <b>No raffles are running right now; check the <a href="/raffles/">Prizes</a> page to look what will be raffled when.</b>
+                    </div>
+                </div>
+                <div class="inner-border form-body">
+                    <div class="form-item">
+                        <label for="id_challenge">Support a Challenge:</label>
+                        <select name="challenge" id="id_challenge">
+                            <option value="" selected="selected">Select a challenge...</option>
+                            <!-- challenges go here -->
+                        </select>
+                    </div>
+                </div>
+                <div class="inner-border form-footer">
+                    <div class="align-left">
+                        <button type="submit">Donate!</button>
+                        <button type="button">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+{% endblock %}
