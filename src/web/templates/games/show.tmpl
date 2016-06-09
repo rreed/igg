@@ -32,7 +32,9 @@
 
         <div class="outer-border list">
             {% for game in games %}
-                {{ render_game(game.id, game.name, game.developer, loop.cycle('odd', 'even')) }}
+                {% if game.visible %}
+                    {{ render_game(game.id, game.name, game.developer, loop.cycle('odd', 'even')) }}
+                {% endif %}
             {% endfor %}
         </div>
     </div>

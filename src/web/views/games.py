@@ -12,7 +12,7 @@ def show():
 def suggest():
     form = GameSuggestionForm(request.form)
     if request.method == 'POST':
-        # actually suggest a game
+        Game.create(name=form.name.data, developer=form.developer.data, site=form.site.data, visible=False)
         return redirect(url_for('games.suggest'))
 
     return render_template('games/suggest.tmpl', form=form)
