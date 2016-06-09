@@ -41,5 +41,8 @@ class MarathonInfo(Base, CRUDMixin): # realistically almost always Update
         hours = seconds // 60 // 60
         minutes = (seconds  - (hours * 3600)) // 60
 
-        # pad the return values to make them two digits
-        return "{0:02d}:{1:02d}".format(int(hours), int(minutes))
+        if hours >= self.hours:
+            return "{}:00".format(int(self.hours))
+        else:
+            # pad the return values to make them two digits
+            return "{0:02d}:{1:02d}".format(int(hours), int(minutes))
