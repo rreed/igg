@@ -39,15 +39,14 @@ def show():
 
 def forgot_password():
     if request.method == 'GET':
-        return """
-            <p>Forget your password? Enter your email below to reset it.</p>
-            <form method='POST'>
-                <input type='text' name='reset_email' />
-                <button type='submit'>Reset your password</button>
-            </form>"""
+        return render_template("login/forgot_password.tmpl")
     else:
-        email = request.form['reset_email']
-        payload = create_payload(request.form['reset_email'])
+        email = request.form.get('reset_email')
+
+        if not email:
+            return redirect(url_for('login.forgot_password'))
+
+        payload = create_payload(email)
         url = "http://{}/reset_password?{}".format(app_config.HOST, get_url_keys(payload))
 
         msg = Message('Reset your iggmarathon.com password', recipients=[email])
