@@ -1,10 +1,13 @@
 import datetime
+from math import pow, ceil
 
 from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Boolean, DateTime, Integer, String, Float
 
 from ..base import Base
 from ..mixins import CRUDMixin
+
+from src.settings import app_config
 
 class MarathonInfo(Base, CRUDMixin): # realistically almost always Update
     __tablename__ = 'marathon_info'
@@ -29,9 +32,13 @@ class MarathonInfo(Base, CRUDMixin): # realistically almost always Update
             return 'POST'
 
     def next_hour_cost(self):
-        # TODO: replace with our real formula...
-        # make up something like 20x per hour per hour to test for now
-        next_hour_total = 20 * (20 * self.hours + 1)
+        #from the previous total cost formula
+        initial = app_config.IGG_PARAM_I_HR_COST
+        rate = app_config.IGG_PARAM_RATE
+
+        next_hour_total = initial * (pow(1 + rate, self.hours) - 1) / rate
+        next_hour_total = ceil(next_hour_total * 100) / 100
+
         return next_hour_total - self.total
 
     def elapsed(self):
