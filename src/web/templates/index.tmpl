@@ -21,8 +21,8 @@
     <div id="tumblr-posts">
         {% for post in posts %}
             {{render_post(
-                post.find('regular-title'),
-                post.find('regular-body'),
+                post.find('regular-title').text,
+                post.find('regular-body').text,
                 post.get('date'),
                 post.get('url')
             )}}
