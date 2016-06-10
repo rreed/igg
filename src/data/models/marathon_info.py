@@ -39,7 +39,7 @@ class MarathonInfo(Base, CRUDMixin): # realistically almost always Update
         next_hour_total = initial * (pow(1 + rate, self.hours) - 1) / rate
         next_hour_total = ceil(next_hour_total * 100) / 100
 
-        return next_hour_total - self.total
+        return "{0:.2f}".format(next_hour_total - self.total)
 
     def elapsed(self):
         now = datetime.datetime.now()
