@@ -1,7 +1,7 @@
 import json
 import os
 
-from flask import Flask, g, redirect, url_for
+from flask import Flask, g, redirect, url_for, render_template
 from flask.ext.login import current_user
 from flask_admin.contrib.sqla import ModelView
 
@@ -45,6 +45,10 @@ def create_app(app_config):
     admin.init_app(app)
     mail.init_app(app)
     register_routes(app)
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.tmpl'), 404
 
     @login_manager.user_loader
     def load_user(id):
