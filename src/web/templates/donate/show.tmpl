@@ -126,7 +126,13 @@
                         <label for="id_challenge">Support a Challenge:</label>
                         <select name="challenge" id="id_challenge">
                             <option value="" selected="selected">Select a challenge...</option>
-                            <!-- challenges go here -->
+                            {% for challenge in challenges %}
+                                {% if challenge.bounty %}
+                                    <option value="{{challenge.id}}">{{challenge.name}} - {{'%0.2f' | format(challenge.total)}} / {{'%0.2f' | format(challenge.bounty)}}</option>
+                                {% else %}
+                                    <option value="{{challenge.id}}">{{challenge.name}} - ({{'%0.2f' | format(challenge.total)}})</option>
+                                {% endif %}
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
