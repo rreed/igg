@@ -1,5 +1,5 @@
 import datetime
-from math import pow, ceil
+from math import pow, ceil, log
 
 from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Boolean, DateTime, Integer, String, Float
@@ -53,3 +53,19 @@ class MarathonInfo(Base, CRUDMixin): # realistically almost always Update
         else:
             # pad the return values to make them two digits
             return "{0:02d}:{1:02d}".format(int(hours), int(minutes))
+
+    def roi(self, donation_amount):
+        """
+        Given a donation amount, return approximately how many minutes that donation will extend the marathon by.
+        """
+        old_total = self.total
+        donation_amount = float(donation_amount)
+        rate = app_config.IGG_PARAM_RATE
+        ihcost = app_config.IGG_PARAM_I_HR_COST
+        diff = (
+            (log(((old_total + donation_amount) / ihcost * rate) + 1) / log(1.0 + rate))
+            - (log((old_total / ihcost * rate) + 1)
+            / log(1.0 + rate))
+        )
+        d = datetime.timedelta(hours=diff)
+        return d.seconds // 60

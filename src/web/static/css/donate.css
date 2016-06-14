@@ -6,3 +6,7 @@ label {
     float: left;
     padding-right: 10px;
 }
+
+#roi {
+    display: none;
+}

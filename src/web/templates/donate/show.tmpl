@@ -20,7 +20,9 @@
                         <label for="amount">Amount:</label>
                         <span class="textaddon">$</span>
                         <input id="amount" name="amount" class="addedonto" size="16" type="text" placeholder="10.00" tabindex="1">
-                        <span id="time-roi"></span>
+                        <div id="roi">
+                            That donation will increase the marathon length by <span id="time-roi"></span> minutes.
+                        </div>
                     </div>
                     <div class="clear"></div>
                     <div class="form-item">
@@ -136,4 +138,6 @@
                 </div>
             </form>
         </div>
+
+        <script src="{{ url_for('static', filename='js/donate.js') }}"></script>
 {% endblock %}
