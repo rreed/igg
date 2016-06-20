@@ -17,3 +17,5 @@ class Prize(Base, CRUDMixin):
     is_code = Column('is_code', Boolean, default=True)
     entry_cost = Column('entry_cost', Float)
     game_id = Column('game_id', Integer, ForeignKey('games.id'), nullable=False)
+    start = Column('start', DateTime)
+    end = Column('end', DateTime)

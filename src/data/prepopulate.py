@@ -52,8 +52,20 @@ def prepopulate_database():
     prize = Prize.create(
         title='Another Gunbunnies Code',
         quantity=1,
-        game_id=test_game.id
+        game_id=test_game.id,
+        entry_cost=10.00,
+        start=(now - datetime.timedelta(minutes=90)),
+        end=(now + datetime.timedelta(minutes=90))
     )
+    Prize.create(
+        title='Some Cool Test Swag',
+        quantity=3,
+        game_id=test_game.id,
+        entry_cost=5.00,
+        start=(now - datetime.timedelta(minutes=120)),
+        end=(now + datetime.timedelta(minutes=120))
+    )
+
     ScheduleEntry.create(
         title='Win a code',
         game_id=test_game.id,

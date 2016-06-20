@@ -118,7 +118,16 @@
                 </div>
                 <div class="inner-border form-body">
                     <div class="list">
-                        <b>No raffles are running right now; check the <a href="/raffles/">Prizes</a> page to look what will be raffled when.</b>
+                        {% if prizes|length == 0 %}
+                            <b>No raffles are running right now; check the <a href="{{url_for('prizes.show')}}">Prizes</a> page to look what will be raffled when.</b>
+                        {% else %}
+                            <select name="challenge" id="id_challenge">
+                                <option value="" selected="selected">Select a prize...</option>
+                                {% for prize in prizes %}
+                                    <option value="{{prize.id}}">{{prize.title}} - (${{'%0.2f' | format(prize.entry_cost)}} per entry)</option>
+                                {% endfor %}
+                            </select>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="inner-border form-body">
