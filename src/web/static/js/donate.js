@@ -4,6 +4,13 @@ document.getElementById('amount').onblur = function() {
     }
 }
 
+document.getElementById('name').onblur = function() {
+    document.getElementById('donationPreview').innerHTML = getDonationPreviewText();
+}
+document.getElementById('amount').onblur = function() {
+    document.getElementById('donationPreview').innerHTML = getDonationPreviewText();
+}
+
 function updateROI(amount) {
     var req = new XMLHttpRequest();
     req.onreadystatechange = function() {
@@ -14,4 +21,19 @@ function updateROI(amount) {
     };
     req.open('GET', '/roi/' + amount, true);
     req.send();
+}
+
+function getDonationPreviewText() {
+    var amount = Number(document.getElementById('amount').value);
+    var name = document.getElementById('name').value;
+
+    if (!amount || isNaN(amount)) {
+        amount = Number("0.00");
+    }
+
+    if (!name) {
+        name = "Anonymous";
+    }
+
+    return "$" + amount.toFixed(2) + " donated by " + name;
 }
