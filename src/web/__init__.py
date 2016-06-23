@@ -1,13 +1,14 @@
 import json
 import os
 
-from flask import Flask, g, redirect, url_for, render_template
+from flask import Flask, g, redirect, request, url_for, render_template, Markup
 from flask.ext.login import current_user
 from flask_admin.contrib.sqla import ModelView
+from flask_admin import form
 
 from routes import register_routes
 from extensions import login_manager, admin, mail
-from ..data.models import Challenge, Game, Interview, MarathonInfo, Prize, ScheduleEntry, User
+from ..data.models import Challenge, Game, Image, Interview, MarathonInfo, Prize, ScheduleEntry, User
 from ..data.db import db
 
 def create_app(app_config):
@@ -28,6 +29,7 @@ def create_app(app_config):
     admin.add_view(AdminModelView(Prize, db.session))
     admin.add_view(AdminModelView(Interview, db.session))
     admin.add_view(AdminModelView(ScheduleEntry, db.session))
+    admin.add_view(ImageView(Image, db.session))
 
     with open(os.path.join(__location__, 'secrets.json')) as secrets_file:
         secrets = json.load(secrets_file)
@@ -65,9 +67,29 @@ def create_app(app_config):
     return app
 
 class AdminModelView(ModelView):
+    column_display_pk = True
+    column_hide_backrefs = False
+
     def is_accessible(self):
         return current_user.is_authenticated
 
     def inaccessible_callback(self, name, **kwargs):
         # redirect to login page if user doesn't have access
-        return redirect(url_for('login', next=request.url))
+        return redirect(url_for('login.show'))
+
+class ImageView(AdminModelView):
+    def _list_thumbnail(view, context, model, name):
+        if model.path:
+            return Markup('<img src="%s">' % url_for('static', filename='uploaded/{}'.format(form.thumbgen_filename(model.path))))
+        else:
+            return ''
+
+    column_formatters = {
+        'path': _list_thumbnail
+    }
+
+    form_extra_fields = {
+        'path': form.ImageUploadField('Image',
+                                      base_path=os.path.join(os.path.dirname(__file__), 'static/uploaded'),
+                                      thumbnail_size=(100, 100, True))
+    }

@@ -1,6 +1,7 @@
 from .challenge import Challenge
 from .donation import Donation
 from .game import Game
+from .image import Image
 from .interview import Interview
 from .marathon_info import MarathonInfo
 from .prize import Prize

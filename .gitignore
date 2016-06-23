@@ -7,3 +7,5 @@ secrets.json
 
 dev.db
 .cache
+
+src/web/static/uploaded

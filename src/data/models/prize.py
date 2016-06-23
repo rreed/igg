@@ -19,3 +19,6 @@ class Prize(Base, CRUDMixin):
     game_id = Column('game_id', Integer, ForeignKey('games.id'), nullable=False)
     start = Column('start', DateTime)
     end = Column('end', DateTime)
+
+    def __unicode__(self):
+        return self.title
