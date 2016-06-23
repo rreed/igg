@@ -1,5 +1,6 @@
 from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Boolean, Integer, String, DateTime
+from sqlalchemy.orm import relationship
 
 from ..base import Base
 from ..mixins import CRUDMixin
@@ -14,5 +15,11 @@ class ScheduleEntry(Base, CRUDMixin):
     description = Column('description', String())
     visible = Column('visible', Boolean)
     game_id = Column('game_id', Integer, ForeignKey('games.id'), nullable=False)
+    game = relationship('Game')
     interview_id = Column('interview_id', Integer, ForeignKey('interviews.id'))
+    interview = relationship('Interview')
     prize_id = Column('prize_id', Integer, ForeignKey('prizes.id'))
+    prize = relationship('Prize')
+
+    def __unicode__(self):
+        return self.title

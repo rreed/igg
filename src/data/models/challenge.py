@@ -1,5 +1,6 @@
 from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Boolean, Integer, String, Float
+from sqlalchemy.orm import relationship
 
 from ..base import Base
 from ..mixins import CRUDMixin
@@ -15,3 +16,7 @@ class Challenge(Base, CRUDMixin):
     bounty = Column('bounty', Float)
     total = Column('total', Float)
     user_id = Column('user_id', Integer, ForeignKey('users.id'))
+    user = relationship('User')
+
+    def __unicode__(self):
+        return self.name

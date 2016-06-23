@@ -30,3 +30,6 @@ class User(Base, CRUDMixin):
 
     def __repr__(self):
         return '<User %r>' % (self.username)
+
+    def __unicode__(self):
+        return self.username

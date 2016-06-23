@@ -12,3 +12,6 @@ class Game(Base, CRUDMixin):
     developer = Column('developer', String())
     site = Column('site', String())
     visible = Column('visible', Boolean, default=True)
+
+    def __unicode__(self):
+        return self.name

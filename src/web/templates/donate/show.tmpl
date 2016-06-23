@@ -119,7 +119,7 @@
                 <div class="inner-border form-body">
                     <div class="list">
                         {% if prizes|length == 0 %}
-                            <p>No raffles are running right now; check the <a href="{{url_for('prizes.show')}}">Prizes</a> page to see what will be raffled when.</p>
+                            <p>No raffles are running right now; check the <a href="{{url_for('prizes.list')}}">Prizes</a> page to see what will be raffled when.</p>
                         {% else %}
                             <select name="challenge" id="id_challenge">
                                 <option value="" selected="selected">Select a prize...</option>

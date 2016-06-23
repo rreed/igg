@@ -1,5 +1,6 @@
 from sqlalchemy.schema import Column, ForeignKey
 from sqlalchemy.types import Boolean, Integer, String, Float, DateTime
+from sqlalchemy.orm import relationship
 
 from ..base import Base
 from ..mixins import CRUDMixin
@@ -19,6 +20,13 @@ class Donation(Base, CRUDMixin):
     approved = Column('approved', Boolean, default=False)
     ipn_hash = Column('ipn_hash', String())
     user_id = Column('user_id', Integer, ForeignKey('users.id'))
+    user = relationship('User')
     prize_id = Column('prize_id', Integer, ForeignKey('prizes.id'))
+    prize = relationship('Prize')
     challenge_id = Column('challenge_id', Integer, ForeignKey('challenges.id'))
-    game_id = Column('game_id', Integer, ForeignKey('game.id'))
+    challenge = relationship('Challenge')
+    game_id = Column('game_id', Integer, ForeignKey('games.id'))
+    game = relationship('Game')
+
+    def __unicode__(self):
+        return self.name
