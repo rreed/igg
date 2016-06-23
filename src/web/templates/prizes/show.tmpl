@@ -1,1 +1,22 @@
-This space for rent.
+{% extends 'base.tmpl' %}
+
+{% block head %}
+    {{ super() }}
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/prizes.css') }}"/>
+{% endblock %}
+
+{% block content %}
+    <div id="pagetitle">Prize</div>
+
+    <div class="grid-10 push-1 no-left-margin no-top-margin outer-border prize-show ">
+        <div class="text-large">{{prize.title}}</div>
+        <div class="text-large">Starts: {{ prize.start.strftime('%Y-%m-%d %H:%M') }} PST</div>
+        <div class="text-large">Ends: {{ prize.end.strftime('%Y-%m-%d %H:%M') }} PST</div>
+
+        <div class="text-small">{{prize.description}}</div>
+
+        {% for image in images %}
+            <img src="/static/uploaded/{{image.path}}"/>
+        {% endfor %}
+    </div>
+{% endblock %}

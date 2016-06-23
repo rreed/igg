@@ -1,0 +1,30 @@
+{% extends 'base.tmpl' %}
+
+{% macro render_prize(id, name, pos) -%}
+    <div data-id="{{id}}" class="item {{pos}} list-title">
+        <a href="/prize/{{id}}"><div class="list-name"><h2>{{name}}</h2></div></a>
+    </div>
+{%- endmacro %}
+
+{% block content %}
+    <div id="pagetitle">Prizes</div>
+
+    <div class="inner pull-1">
+        <!-- game suggestion thingy should go here -->
+        <div class="clear"></div>
+    </div>
+
+    <div class="grid-10 prefix-1 no-left-margin no-right-margin">
+        <div class="outer-border list-header-outer top">
+            <div class="item list-title-top">
+                <div class="list-name"><h1>Name</h1></div>
+            </div>
+        </div>
+
+        <div class="outer-border list">
+            {% for prize in prizes %}
+                {{ render_prize(prize.id, prize.title, loop.cycle('odd', 'even')) }}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

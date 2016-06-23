@@ -54,4 +54,5 @@ def register_routes(app):
     route('/profile', profile.show, methods=['GET'])
 
     from .views import prizes
-    route('/prizes', prizes.show, methods=['GET'])
+    route('/prizes', prizes.list, methods=['GET'])
+    route('/prize/<prize_id>', prizes.show, methods=['GET'])
