@@ -2,7 +2,7 @@ import datetime
 
 from flask import render_template
 
-from ...data.models import Challenge, MarathonInfo, Prize
+from ...data.models import Challenge, Game, MarathonInfo, Prize
 from ...data.db import db
 
 def show():
@@ -12,7 +12,9 @@ def show():
     now = datetime.datetime.now()
     prizes = db.session.query(Prize).filter(Prize.start <= now).filter(Prize.end > now).all()
 
-    return render_template('donate/show.tmpl', challenges=challenges, prizes=prizes)
+    games = db.session.query(Game).all()
+
+    return render_template('donate/show.tmpl', challenges=challenges, prizes=prizes, games=games)
 
 def roi(amount):
     info = db.session.query(MarathonInfo).first()
