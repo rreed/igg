@@ -10,3 +10,7 @@ label {
 #roi {
     display: none;
 }
+
+dt {
+    width: 160px;
+}

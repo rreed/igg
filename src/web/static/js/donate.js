@@ -1,13 +1,13 @@
-document.getElementById('amount').onblur = function() {
+document.getElementById('amount_total').onblur = function() {
     if (this.value && typeof this.value === 'number') {
         updateROI(this.value);
     }
 }
 
-document.getElementById('name').onblur = function() {
+document.getElementById('donation_name').onblur = function() {
     document.getElementById('donationPreview').innerHTML = getDonationPreviewText();
 }
-document.getElementById('amount').onblur = function() {
+document.getElementById('amount_total').onblur = function() {
     document.getElementById('donationPreview').innerHTML = getDonationPreviewText();
 }
 
@@ -24,8 +24,8 @@ function updateROI(amount) {
 }
 
 function getDonationPreviewText() {
-    var amount = Number(document.getElementById('amount').value);
-    var name = document.getElementById('name').value;
+    var amount = Number(document.getElementById('amount_total').value);
+    var name = document.getElementById('donation_name').value;
 
     if (!amount || isNaN(amount)) {
         amount = Number("0.00");

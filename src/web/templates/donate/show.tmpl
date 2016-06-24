@@ -1,157 +1,127 @@
 {% extends 'base.tmpl' %}
 
+{% from 'formhelpers.tmpl' import render_field_donate %}
+
 {% block head %}
     {{ super() }}
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/donate.css') }}"/>
 {% endblock %}
 
-
 {% block content %}
     <div id='pagetitle'>Donate Now</div>
 
     <div class="grid-10 push-1 outer-border no-top-margin no-left-margin donate">
-            <form id="submit-donation" class="form-horizontal" action="" method="POST">
-
-                <div class="inner-border form-header">
-                    <h2 class="text-large expanded dark-shadow">Required Information</h2>
-                </div>
-                <div class="inner-border form-body">
-                    <div class="form-item">
-                        <label for="amount">Amount:</label>
-                        <span class="textaddon">$</span>
-                        <input id="amount" name="amount" class="addedonto" size="16" type="text" placeholder="10.00" tabindex="1">
-                        <div id="roi">
-                            That donation will increase the marathon length by <span id="time-roi"></span> minutes.
-                        </div>
+        <form id="submit-donation" class="form-horizontal" action="" method="POST">
+            <div class="inner-border form-header">
+                <h2 class="text-large expanded dark-shadow">Required Information</h2>
+            </div>
+            <div class="inner-border form-body">
+                <div class="form-item">
+                    {{ render_field_donate(form.amount_total) }}
+                    <div id="roi">
+                        That donation will increase the marathon length by <span id="time-roi"></span> minutes.
                     </div>
+                </div>
+                <div class="clear"></div>
+                <div class="form-item">
+                    <label for="split">How should we split?:</label>
+                    <input type="radio" id="radio-even" name="split" data-shows="evenly" value="even" checked="">Evenly
+                    <input type="radio" id="radio-uneven" name="split" data-shows="not-evenly" value="uneven">Custom
                     <div class="clear"></div>
+                </div>
+
+                <div id="evenly" class="split-div">
+                </div>
+                <div id="not-evenly" class="split-div">
                     <div class="form-item">
-                        <label for="split">How should we split?:</label>
-                        <input type="radio" id="radio-even" name="split" data-shows="evenly" value="even" checked="">Evenly
-                        <input type="radio" id="radio-uneven" name="split" data-shows="not-evenly" value="uneven">Custom
+                        <div class="uneven-row">
+                            {{ render_field_donate(form.amount_first) }}
+                        </div>
+                        <div class="clear"></div>
+                        <div>
+                            {{ render_field_donate(form.amount_second) }}
+                        </div>
+                        <div class="clear"></div>
+                        <div>
+                            {{ render_field_donate(form.amount_third) }}
+                        </div>
                         <div class="clear"></div>
                     </div>
-
-                    <div id="evenly" class="split-div">
-                    </div>
-                    <div id="not-evenly" class="split-div">
-                        <div class="form-item">
-                            <div class="uneven-row">
-                                <label for="firstRecipient">Child's Play Charity:</label>
-                                $<input type="text" id="firstRecipient" class="uneven-split" name="amount_1">
-                            </div>
-                            <div class="clear"></div>
-                            <div>
-                                <label for="thirdRecipient">EFF:</label>
-                                $<input type="text" id="thirdRecipient" class="uneven-split" name="amount_3">
-                            </div>
-                            <div class="clear"></div>
-                            <div>
-                                <label for="secondRecipient">GiveDirectly:</label>
-                                $<input type="text" id="secondRecipient" class="uneven-split" name="amount_2">
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-
-                    <div class="form-item">
-                        <label for="email">E-mail:</label>
-                        <input id="email" name="email" size="16" type="text" placeholder="jsmith@example.com" tabindex="2">
-                    </div>
-                    <div class="clear"></div>
                 </div>
 
-                <div class="inner-border form-header">
-                    <h2 class="text-large expanded dark-shadow">Donation Log Information</h2>
+                <div class="form-item">
+                    {{ render_field_donate(form.email) }}
                 </div>
+                <div class="clear"></div>
+            </div>
 
-                <div class="inner-border form-body">
-                    <div class="form-item">
-                        <label for="name">Name on Donation:</label>
-                        <input id="name" name="name" size="16" type="text" placeholder="John Smith" tabindex="4">
-                    </div>
-                    <div class="clear"></div>
-                    <div class="form-item">
-                        <label for="url">Homepage:</label>
-                        <input id="url" name="url" size="16" type="text" placeholder="http://iggmarathon.com/" tabindex="5" value="">
-                    </div>
-                    <div class="clear"></div>
-                    <div class="form-item">
-                        <label for="twitter">Twitter Handle:</label>
-                        <span class="textaddon">@</span>
-                        <input id="twitter-handle" name="twitter" class="addedonto" size="16" type="text" placeholder="iggmarathon" tabindex="6" value="">
-                    </div>
-                    <div class="clear"></div>
-                    <div class="form-item">
-                        <label for="comment">Comment to the team:</label>
-                        <textarea id="comment" name="comment" tabindex="7" class="textarea-both"></textarea>
+            <div class="inner-border form-header">
+                <h2 class="text-large expanded dark-shadow">Donation Log Information</h2>
+            </div>
 
-                    </div><div class="clear"></div>
-                    <div class="form-item left">
-                        <p>This is how your donation will look on the log:</p>
-                        <div class="well">
-                            <span id="donationPreview">$0.00 donated by Anonymous</span>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
+            <div class="inner-border form-body">
+                <div class="form-item">
+                    {{ render_field_donate(form.donation_name) }}
                 </div>
+                <div class="clear"></div>
+                <div class="form-item">
+                    {{ render_field_donate(form.homepage) }}
+                </div>
+                <div class="clear"></div>
+                <div class="form-item">
+                    {{ render_field_donate(form.twitter_handle) }}
+                </div>
+                <div class="clear"></div>
+                <div class="form-item">
+                    {{ render_field_donate(form.comment) }}
+                </div>
+                <div class="clear"></div>
 
-                <div class="inner-border form-header">
-                    <h2 class="text-large expanded dark-shadow">Games, Prizes, and Challenges</h2>
-                </div>
-                <div class="inner-border form-body">
-                    <div class="form-item">
-                        <label for="id_game">Request a Game:</label>
-                        <input placeholder="Type Here!" type="text" id="id_game" autocomplete="off" list='game-data'>
-                        <datalist id="game-data">
-                            {% for game in games %}
-                                <option value="{{game.name}}">
-                            {% endfor %}
-                        </datalist>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="list">
-                        <div class="item list-title even"><div class="list-name"><h2 id="donateGameName">Select a game to see details and status.</h2></div></div>
-                        <div class="list-content" id="donateGameInfo"></div>
-                    </div><div class="clear"></div>
-                </div>
-                <div class="inner-border form-body">
-                    <div class="list">
-                        {% if prizes|length == 0 %}
-                            <p>No raffles are running right now; check the <a href="{{url_for('prizes.list')}}">Prizes</a> page to see what will be raffled when.</p>
-                        {% else %}
-                            <select name="challenge" id="id_challenge">
-                                <option value="" selected="selected">Select a prize...</option>
-                                {% for prize in prizes %}
-                                    <option value="{{prize.id}}">{{prize.title}} - (${{'%0.2f' | format(prize.entry_cost)}} per entry)</option>
-                                {% endfor %}
-                            </select>
-                        {% endif %}
+                <div class="form-item left">
+                    <p>This is how your donation will look on the log:</p>
+                    <div class="well">
+                        <span id="donationPreview">$0.00 donated by Anonymous</span>
                     </div>
                 </div>
-                <div class="inner-border form-body">
-                    <div class="form-item">
-                        <label for="id_challenge">Support a Challenge:</label>
-                        <select name="challenge" id="id_challenge">
-                            <option value="" selected="selected">Select a challenge...</option>
-                            {% for challenge in challenges %}
-                                {% if challenge.bounty %}
-                                    <option value="{{challenge.id}}">{{challenge.name}} - {{'%0.2f' | format(challenge.total)}} / {{'%0.2f' | format(challenge.bounty)}}</option>
-                                {% else %}
-                                    <option value="{{challenge.id}}">{{challenge.name}} - ({{'%0.2f' | format(challenge.total)}})</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-                <div class="inner-border form-footer">
-                    <div class="align-left">
-                        <button type="submit">Donate!</button>
-                        <button type="button">Cancel</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+                <div class="clear"></div>
+            </div>
 
-        <script src="{{ url_for('static', filename='js/donate.js') }}"></script>
+            <div class="inner-border form-header">
+                <h2 class="text-large expanded dark-shadow">Games, Prizes, and Challenges</h2>
+            </div>
+            <div class="inner-border form-body">
+                <div class="form-item">
+                    {{ render_field_donate(form.game, list='game-data') }}
+                    <datalist id="game-data">
+                        {% for game in games %}
+                            <option value='{{game.name}}'>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="inner-border form-body">
+                <div class="list">
+                    {% if prize_count %}
+                        {{ render_field_donate(form.prizes) }}
+                    {% else %}
+                        <p>No raffles are running right now; check the <a href="{{url_for('prizes.list')}}">Prizes</a> page to see what will be raffled when.</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="inner-border form-body">
+                <div class="form-item">
+                    {{ render_field_donate(form.challenges) }}
+                </div>
+            </div>
+            <div class="inner-border form-footer">
+                <div class="align-left">
+                    <button type="submit">Donate!</button>
+                    <button type="button">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/donate.js') }}"></script>
 {% endblock %}
