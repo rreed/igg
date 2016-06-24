@@ -8,15 +8,18 @@
 {% block content %}
     <div id="pagetitle">Prize</div>
 
-    <div class="grid-10 push-1 no-left-margin no-top-margin outer-border prize-show ">
+    <div class="grid-10 push-1 no-left-margin no-top-margin prize-show purple">
         <div class="text-large">{{prize.title}}</div>
         <div class="text-large">Starts: {{ prize.start.strftime('%Y-%m-%d %H:%M') }} PST</div>
         <div class="text-large">Ends: {{ prize.end.strftime('%Y-%m-%d %H:%M') }} PST</div>
 
         <div class="text-small">{{prize.description}}</div>
+        <div class="text-small">We have: {{prize.quantity}}</div>
+        <div class="text-small">One entry for this prize costs: ${{'%0.2f' | format(prize.entry_cost)}}</div>
+        <br>
 
         {% for image in images %}
-            <img src="/static/uploaded/{{image.path}}"/>
+            <img src="/static/uploaded/{{image.path}}"/><br>
         {% endfor %}
     </div>
 {% endblock %}
