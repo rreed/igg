@@ -1,6 +1,6 @@
 {% extends 'base.tmpl' %}
 
-{% from 'formhelpers.tmpl' import render_field_donate %}
+{% from 'formhelpers.tmpl' import render_field_donate, render_radio_sliders %}
 
 {% block head %}
     {{ super() }}
@@ -23,30 +23,8 @@
                     </div>
                 </div>
                 <div class="clear"></div>
-                <div class="form-item">
-                    <label for="split">How should we split?:</label>
-                    <input type="radio" id="radio-even" name="split" data-shows="evenly" value="even" checked="">Evenly
-                    <input type="radio" id="radio-uneven" name="split" data-shows="not-evenly" value="uneven">Custom
-                    <div class="clear"></div>
-                </div>
-
-                <div id="evenly" class="split-div">
-                </div>
-                <div id="not-evenly" class="split-div">
-                    <div class="form-item">
-                        <div class="uneven-row">
-                            {{ render_field_donate(form.amount_first) }}
-                        </div>
-                        <div class="clear"></div>
-                        <div>
-                            {{ render_field_donate(form.amount_second) }}
-                        </div>
-                        <div class="clear"></div>
-                        <div>
-                            {{ render_field_donate(form.amount_third) }}
-                        </div>
-                        <div class="clear"></div>
-                    </div>
+                <div class="form-item split-choice">
+                    {{ render_radio_sliders(form.split, form) }}
                 </div>
 
                 <div class="form-item">
@@ -103,7 +81,7 @@
             <div class="inner-border form-body">
                 <div class="list">
                     {% if prize_count %}
-                        {{ render_field_donate(form.prizes) }}
+                        {{ render_field_donate(form.prize) }}
                     {% else %}
                         <p>No raffles are running right now; check the <a href="{{url_for('prizes.list')}}">Prizes</a> page to see what will be raffled when.</p>
                     {% endif %}
@@ -111,7 +89,7 @@
             </div>
             <div class="inner-border form-body">
                 <div class="form-item">
-                    {{ render_field_donate(form.challenges) }}
+                    {{ render_field_donate(form.challenge) }}
                 </div>
             </div>
             <div class="inner-border form-footer">

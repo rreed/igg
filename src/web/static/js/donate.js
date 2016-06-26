@@ -11,6 +11,10 @@ document.getElementById('amount_total').onblur = function() {
     document.getElementById('donationPreview').innerHTML = getDonationPreviewText();
 }
 
+document.getElementById('submit-donation').onsubmit = function() {
+    populateEvenSplit();
+}
+
 function updateROI(amount) {
     var req = new XMLHttpRequest();
     req.onreadystatechange = function() {
@@ -36,4 +40,12 @@ function getDonationPreviewText() {
     }
 
     return "$" + amount.toFixed(2) + " donated by " + name;
+}
+
+function populateEvenSplit() {
+    if (document.querySelector('input[name="split"]:checked').value == 'even') {
+        document.getElementById('amount_first').value = 0.00;
+        document.getElementById('amount_second').value = 0.00;
+        document.getElementById('amount_third').value = 0.00;
+    }
 }

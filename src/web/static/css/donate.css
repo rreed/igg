@@ -7,10 +7,30 @@ label {
     padding-right: 10px;
 }
 
+dt {
+    width: 160px;
+}
+
 #roi {
     display: none;
 }
 
-dt {
-    width: 160px;
+.split-choice li:not(:first-child) {
+    float: left;
+}
+
+.split-choice input {
+    float: left;
+}
+
+.split-choice label:not(:first-child) {
+    width: inherit!important;
+}
+
+.split-choice .not-evenly {
+	display: none;
+}
+
+.split-choice input[value="uneven"]:checked ~ .not-evenly {
+	display: block;
 }

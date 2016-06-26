@@ -1,7 +1,8 @@
 import datetime
 
-from flask import render_template, request
-from wtforms import Form, DecimalField, SelectField, TextField, TextAreaField
+from flask import render_template, request, redirect, url_for
+from wtforms import Form, DecimalField, RadioField, SelectField, TextField, TextAreaField, validators
+from flask.ext.login import current_user
 
 from ...data.models import Challenge, Donation, Game, MarathonInfo, Prize
 from ...data.db import db
@@ -22,16 +23,86 @@ def show():
         else:
             challenge_tuples.append((challenge.id, '{0} - (${1:.2f})'.format(challenge.name, challenge.total)))
 
-    prize_tuples = [(prize.id, prize.title) for prize in prizes]
+    prize_tuples = [(0, 'Select a prize...')]
+    for prize in prizes:
+        prize_tuples.append((prize.id, prize.title))
 
     form = DonationForm(request.form)
-    form.challenges.choices = challenge_tuples
-    form.prizes.choices = prize_tuples
+    form.challenge.choices = challenge_tuples
+    form.prize.choices = prize_tuples
 
-    if request.method == 'GET':
-        return render_template('donate/show.tmpl', form=form, prize_count=len(prize_tuples), games=games)
-    else:
-        pass
+    if request.method == 'POST' and form.validate():
+        # oh boy validation
+        # snag all the absolutely required things first
+        amount = form.amount_total.data
+
+        # better names when we finalize charities
+        if form.split.data == 'even':
+            split = round(amount / 3, 2) # two-digit precision
+            delta = (split * 3) - float(amount)
+            one = split
+            two = split
+            three = split - delta
+        else:
+            one = form.amount_first.data
+            two = form.amount_second.data
+            three = form.amount_third.data
+
+        email = form.email.data
+        name = form.donation_name.data or 'Anonymous'
+        homepage = form.homepage.data
+        twitter = form.twitter_handle.data
+        comment = form.comment.data
+
+        game_name = form.game.data
+        game = db.session.query(Game).filter_by(name=game_name).first()
+        game_id = game.id if game else None
+
+        challenge = form.challenge.data
+        challenge_id = challenge if challenge != 0 else None
+
+        prize = form.prize.data
+        prize_id = prize if prize != 0 else None
+
+        user_id = current_user.id if not current_user.is_anonymous else None
+
+        Donation.create(
+            name=name,
+            url=homepage,
+            twitter=twitter,
+            comment=comment,
+            amount=amount,
+            amount_one=one,
+            amount_two=two,
+            amount_three=three,
+            time=datetime.datetime.now(),
+            user_id=user_id,
+            prize_id=prize_id,
+            challenge_id=challenge_id,
+            game_id=game_id
+        )
+
+        # add this donation to the total number of donations
+        info = db.session.query(MarathonInfo).first()
+        info.total += float(amount)
+        info.update()
+
+        # if we know about their game, add some buzz
+        if game:
+            game.buzz += float(amount)
+            game.update()
+
+        # if a challenge was selected, update it
+        if challenge_id:
+            challenge = db.session.query(Challenge).filter_by(id=challenge_id).first()
+            challenge.total += float(amount)
+            challenge.update()
+
+        return redirect(url_for('index.show'))
+
+    # GET
+    return render_template('donate/show.tmpl', form=form, prize_count=len(prize_tuples), games=games)
+
 
 def roi(amount):
     info = db.session.query(MarathonInfo).first()
@@ -39,7 +110,8 @@ def roi(amount):
 
 class DonationForm(Form):
     # top section
-    amount_total = DecimalField('Amount')
+    amount_total = DecimalField('Amount', [validators.DataRequired()])
+    split = RadioField('Split Donation', choices=[('even','Evenly'), ('uneven','Custom')], default='even')
     amount_first = DecimalField('Child\'s Play Charity')
     amount_second = DecimalField('EFF')
     amount_third = DecimalField('GiveDirectly')
@@ -53,5 +125,5 @@ class DonationForm(Form):
 
     # selects and optional stuff
     game = TextField('Request a Game')
-    challenges = SelectField('Support a Challenge')
-    prizes = SelectField('Select a Prize')
+    challenge = SelectField('Support a Challenge', coerce=int, default=0)
+    prize = SelectField('Select a Prize', coerce=int, default=0)

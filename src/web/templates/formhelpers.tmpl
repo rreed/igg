@@ -25,3 +25,29 @@
         </dd>
     </dt>
 {% endmacro %}
+
+{% macro render_radio_sliders(field, form) %}
+    {{field.label}}
+    {% for subfield in field %}
+        {{ subfield.label }}
+        {{ subfield }}
+    {% endfor %}
+
+    <div class="clear"></div>
+    <div class="split-div not-evenly">
+        <div class="form-item">
+            <div class="uneven-row">
+                {{ render_field_donate(form.amount_first) }}
+            </div>
+            <div class="clear"></div>
+            <div>
+                {{ render_field_donate(form.amount_second) }}
+            </div>
+            <div class="clear"></div>
+            <div>
+                {{ render_field_donate(form.amount_third) }}
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+{% endmacro %}

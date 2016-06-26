@@ -24,8 +24,6 @@ def upgrade():
         sa.Column('visible', sa.Boolean, default=True),
         sa.Column('bounty', sa.Float),
         sa.Column('total', sa.Float),
-        sa.Column('user_id', sa.Integer, nullable=False),
-        sa.ForeignKeyConstraint(['user_id'], ['users.id'], name='fk_challenges_users_user_id'),
         sa.PrimaryKeyConstraint('id', name=op.f('pk_interviews'))
     )
 

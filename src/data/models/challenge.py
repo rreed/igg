@@ -15,8 +15,6 @@ class Challenge(Base, CRUDMixin):
     visible = Column('visible', Boolean, default=True)
     bounty = Column('bounty', Float)
     total = Column('total', Float)
-    user_id = Column('user_id', Integer, ForeignKey('users.id'))
-    user = relationship('User')
 
     def __unicode__(self):
         return self.name
