@@ -46,6 +46,7 @@ def register_routes(app):
     from .views import donate
     route('/donate', donate.show, methods=['GET', 'POST'])
     route('/roi/<amount>', donate.roi, methods=['GET'])
+    route('/donate/thanks', donate.thanks, methods=['GET'])
 
     from .views import charities
     route('/charities', charities.show, methods=['GET'])

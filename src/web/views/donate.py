@@ -103,6 +103,8 @@ def show():
     # GET
     return render_template('donate/show.tmpl', form=form, prize_count=len(prize_tuples), games=games)
 
+def thanks():
+    return render_template('donate/thanks.tmpl')
 
 def roi(amount):
     info = db.session.query(MarathonInfo).first()
