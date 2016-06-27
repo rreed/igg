@@ -5,6 +5,7 @@
 
 secrets.json
 
+test.db
 dev.db
 .cache
 

@@ -1,3 +1,7 @@
+import os
+import json
+import paypalrestsdk
+
 from flask.ext.login import LoginManager
 from flask_admin import Admin
 from flask_mail import Mail
@@ -11,6 +15,19 @@ def create_admin():
 def create_mail():
     return Mail()
 
+def create_paypal():
+    __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+    with open(os.path.join(__location__, 'secrets.json')) as secrets_file:
+        secrets = json.load(secrets_file)
+
+        paypalrestsdk.configure({
+            "mode": "sandbox", # sandbox or live
+            "client_id": secrets.get('paypal_id'),
+            "client_secret": secrets.get('paypal_secret')
+        })
+
+        return paypalrestsdk
+
 # flask-login
 login_manager = create_login_manager()
 
@@ -19,3 +36,6 @@ admin = create_admin()
 
 # flask-mail
 mail = create_mail()
+
+# paypalrestsdk
+paypal = create_paypal()

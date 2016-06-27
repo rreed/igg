@@ -1,4 +1,6 @@
 import datetime
+import random
+import string
 
 from flask import render_template, request, redirect, url_for
 from wtforms import Form, DecimalField, RadioField, SelectField, TextField, TextAreaField, validators
@@ -6,6 +8,8 @@ from flask.ext.login import current_user
 
 from ...data.models import Challenge, Donation, Game, MarathonInfo, Prize
 from ...data.db import db
+from ...web.extensions import paypal
+from ...settings import app_config
 
 def show():
     challenges = db.session.query(Challenge).all()
@@ -66,6 +70,8 @@ def show():
 
         user_id = current_user.id if not current_user.is_anonymous else None
 
+        populate_paypal_info(one, two, three)
+
         Donation.create(
             name=name,
             url=homepage,
@@ -109,6 +115,44 @@ def thanks():
 def roi(amount):
     info = db.session.query(MarathonInfo).first()
     return str(info.roi(amount))
+
+def populate_paypal_info(first, second, third):
+    if app_config.ENV == 'test':  # don't spam Paypal with unit tests
+        return ""
+
+    sender_batch_id = ''.join(random.choice(string.ascii_uppercase) for i in range(12))
+
+    items = []
+    if first > 0:
+        items.append(create_donation_recipent(first, app_config.FIRST_CHARITY_EMAIL))
+
+    if second > 0:
+        items.append(create_donation_recipent(second, app_config.SECOND_CHARITY_EMAIL))
+
+    if third > 0:
+        items.append(create_donation_recipent(third, app_config.THIRD_CHARITY_EMAIL))
+
+    payout = paypal.Payout({
+        "sender_batch_header": {
+            "sender_batch_id": sender_batch_id
+        },
+        "items": items
+    })
+
+    if payout.create():
+        return payout
+    else:
+        raise Exception(payout.error)
+
+def create_donation_recipent(amount, email):
+    return {
+        "recipient_type": "EMAIL",
+        "amount": {
+            "value": amount,
+            "currency": "USD"
+        },
+        "receiver": email
+    }
 
 class DonationForm(Form):
     # top section
