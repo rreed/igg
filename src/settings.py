@@ -38,7 +38,7 @@ class ProdConfig(object):
     HOST = 'somewhere'
     DEBUG = False
 
-    SQLALCHEMY_DATABASE_URI = URL(drivername='sqlite', database='rds somewhere probably')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', URL(drivername='sqlite', database='prod.db'))
     SQLALCHEMY_SESSION_ARGS = {}
 
     APP_LOG_LEVEL = logging.ERROR
