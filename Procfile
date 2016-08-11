@@ -1,1 +1,1 @@
-web: gunicorn src.wsgi:igg -b 127.0.0.1:$PORT
+web: gunicorn src.wsgi:igg -b 0.0.0.0:$PORT --access-logfile -
