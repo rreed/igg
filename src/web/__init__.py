@@ -16,10 +16,34 @@ def create_app(app_config):
     app.config.from_object(app_config)
 
     __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-    with open(os.path.join(__location__, 'secrets.json')) as secrets_file:
-        secrets = json.load(secrets_file)
-        app.secret_key = secrets.get('app_secret')
+    try: # dev
+        with open(os.path.join(__location__, 'secrets.json')) as secrets_file:
+            secrets = json.load(secrets_file)
+            app.secret_key = secrets.get('app_secret')
+            app_config.SECRET_KEY = app.secret_key
+
+            app.config.update(
+                MAIL_SERVER='smtp.gmail.com',
+                MAIL_PORT=465,
+                MAIL_USERNAME='no-reply@iggmarathon.com',
+                MAIL_DEFAULT_SENDER='no-reply@iggmarathon.com',
+                MAIL_PASSWORD=secrets.get("email_password"),
+                MAIL_USE_SSL=True,
+                MAIL_USE_TLS=False
+            )
+    except IOError: # prod
+        app.secret_key = os.environ.get('IGG_APP_SECRET')
         app_config.SECRET_KEY = app.secret_key
+
+        app.config.update(
+            MAIL_SERVER='smtp.gmail.com',
+            MAIL_PORT=465,
+            MAIL_USERNAME='no-reply@iggmarathon.com',
+            MAIL_DEFAULT_SENDER='no-reply@iggmarathon.com',
+            MAIL_PASSWORD=os.environ.get("IGG_EMAIL_PASSWORD"),
+            MAIL_USE_SSL=True,
+            MAIL_USE_TLS=False
+        )
 
     login_manager.login_view = 'login.show'
 
@@ -30,18 +54,6 @@ def create_app(app_config):
     admin.add_view(AdminModelView(Interview, db.session))
     admin.add_view(AdminModelView(ScheduleEntry, db.session))
     admin.add_view(ImageView(Image, db.session))
-
-    with open(os.path.join(__location__, 'secrets.json')) as secrets_file:
-        secrets = json.load(secrets_file)
-        app.config.update(
-            MAIL_SERVER='smtp.gmail.com',
-            MAIL_PORT=465,
-            MAIL_USERNAME='no-reply@iggmarathon.com',
-            MAIL_DEFAULT_SENDER='no-reply@iggmarathon.com',
-            MAIL_PASSWORD=secrets.get("email_password"),
-            MAIL_USE_SSL=True,
-            MAIL_USE_TLS=False
-        )
 
     login_manager.init_app(app)
     admin.init_app(app)
