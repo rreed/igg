@@ -46,3 +46,6 @@ msg.body = 'text body'
 msg.html = '<b>HTML</b> body'
 mail.send(msg)
 ```
+
+## Production
+From the project root: `gunicorn src.wsgi:igg`

@@ -17,3 +17,5 @@ beautifulsoup4==4.4.1
 bcrypt==2.0.0
 
 pillow==3.2.0
+
+gunicorn==19.6.0
