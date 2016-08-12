@@ -1,5 +1,6 @@
 import json
 import os
+import datetime
 
 from flask import Flask, g, redirect, request, url_for, render_template, Markup
 from flask.ext.login import current_user
@@ -14,6 +15,32 @@ from ..data.db import db
 def create_app(app_config):
     app = Flask(__name__)
     app.config.from_object(app_config)
+
+    # create a fake MarathonInfo if one doesn't exist
+    # just enough to bootstrap
+    info = db.session.query(MarathonInfo).first()
+    if not info:
+        now = datetime.datetime.now()
+        half_an_hour_earlier = now - datetime.timedelta(minutes=30)
+        half_an_hour_later = now + datetime.timedelta(minutes=30)
+
+        test_game = Game.create(name='Test Game', developer='Test Dev')
+
+        test_play = ScheduleEntry.create(
+            title='Play The Test Game',
+            game_id=test_game.id,
+            start=half_an_hour_earlier,
+            end=half_an_hour_later
+        )
+
+        MarathonInfo.create(
+            start=(now - datetime.timedelta(hours=10)),
+            hours=31,
+            total=12345.67,
+            current_game_id=test_game.id,
+            next_game_id=test_game.id,
+            current_schedule_entry=test_play.id
+        )
 
     __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
     try: # dev
