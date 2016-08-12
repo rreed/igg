@@ -24,7 +24,7 @@ def upgrade():
         sa.Column('visible', sa.Boolean, default=True),
         sa.Column('bounty', sa.Float),
         sa.Column('total', sa.Float),
-        sa.PrimaryKeyConstraint('id', name=op.f('pk_interviews'))
+        sa.PrimaryKeyConstraint('id', name=op.f('pk_challenges'))
     )
 
 def downgrade():
