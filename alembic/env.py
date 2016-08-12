@@ -23,7 +23,7 @@ target_metadata = None
 # ... etc.
 
 def get_url():
-    return os.environ.get("DATABASE_URL", "sqlite:///dev.db")
+    return os.environ.get("DATABASE_URL", None)
 
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
@@ -52,16 +52,18 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
-    connectable = create_engine(get_url())
+    url = get_url()
+    if url:
+        connectable = create_engine(get_url())
+    else:
+        with connectable.connect() as connection:
+            context.configure(
+                connection=connection,
+                target_metadata=target_metadata
+            )
 
-    with connectable.connect() as connection:
-        context.configure(
-            connection=connection,
-            target_metadata=target_metadata
-        )
-
-        with context.begin_transaction():
-            context.run_migrations()
+            with context.begin_transaction():
+                context.run_migrations()
 
 if context.is_offline_mode():
     run_migrations_offline()
