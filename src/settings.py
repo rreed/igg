@@ -36,7 +36,7 @@ class TestConfig(object):
 class ProdConfig(object):
     ENV = 'prod'
     HOST = 'dev2016.iggmarathon.com'
-    DEBUG = False
+    DEBUG = True
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', URL(drivername='sqlite', database='prod.db'))
     SQLALCHEMY_SESSION_ARGS = {}
