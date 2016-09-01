@@ -11,7 +11,7 @@ class User(Base, CRUDMixin):
 
     id = Column('id', Integer , primary_key=True)
     username = Column('username', String(20), unique=True, index=True)
-    password = Column('password', String(50))
+    password = Column('password', String(100))
     salt = Column('salt', String())
     email = Column('email', String(50), unique=True, index=True)
     created_at = Column('created_at', DateTime)

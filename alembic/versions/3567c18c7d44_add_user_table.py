@@ -20,7 +20,7 @@ def upgrade():
     op.create_table('users',
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('username', sa.String(20), unique=True, index=True),
-        sa.Column('password', sa.String(50)),
+        sa.Column('password', sa.String(100)),
         sa.Column('email', sa.String(50), unique=True, index=True),
         sa.Column('created_at', sa.DateTime),
         sa.PrimaryKeyConstraint('id', name=op.f('pk_users'))
