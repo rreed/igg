@@ -35,6 +35,8 @@ def create_paypal():
             "client_secret": os.environ.get("PAYPAL_SECRET")
         })
 
+        return paypalrestsdk
+
 # flask-login
 login_manager = create_login_manager()
 
