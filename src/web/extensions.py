@@ -17,16 +17,23 @@ def create_mail():
 
 def create_paypal():
     __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-    with open(os.path.join(__location__, 'secrets.json')) as secrets_file:
-        secrets = json.load(secrets_file)
+    try: # dev
+        with open(os.path.join(__location__, 'secrets.json')) as secrets_file:
+            secrets = json.load(secrets_file)
 
+            paypalrestsdk.configure({
+                "mode": "sandbox", # sandbox or live
+                "client_id": secrets.get('paypal_id'),
+                "client_secret": secrets.get('paypal_secret')
+            })
+
+            return paypalrestsdk
+    except IOError: # prod
         paypalrestsdk.configure({
             "mode": "sandbox", # sandbox or live
-            "client_id": secrets.get('paypal_id'),
-            "client_secret": secrets.get('paypal_secret')
+            "client_id": os.environ.get("PAYPAL_ID"),
+            "client_secret": os.environ.get("PAYPAL_SECRET")
         })
-
-        return paypalrestsdk
 
 # flask-login
 login_manager = create_login_manager()
