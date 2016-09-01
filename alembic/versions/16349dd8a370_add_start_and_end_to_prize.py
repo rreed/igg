@@ -22,5 +22,5 @@ def upgrade():
 
 def downgrade():
     with op.batch_alter_table("prizes") as batch_op:
-        batch_op.drop_column(sa.Column('start'))
-        batch_op.drop_column(sa.Column('end'))
+        batch_op.drop_column('start')
+        batch_op.drop_column('end')

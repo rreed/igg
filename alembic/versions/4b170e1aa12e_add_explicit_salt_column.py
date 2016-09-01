@@ -21,4 +21,4 @@ def upgrade():
 
 def downgrade():
     with op.batch_alter_table("users") as batch_op:
-        batch_op.drop_column(sa.Column('salt'))
+        batch_op.drop_column('salt')

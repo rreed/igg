@@ -23,6 +23,6 @@ def upgrade():
 
 def downgrade():
     with op.batch_alter_table("donations") as batch_op:
-        batch_op.drop_column(sa.Column('amount_one'))
-        batch_op.drop_column(sa.Column('amount_two'))
-        batch_op.drop_column(sa.Column('amount_three'))
+        batch_op.drop_column('amount_one')
+        batch_op.drop_column('amount_two')
+        batch_op.drop_column('amount_three')

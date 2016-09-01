@@ -21,6 +21,6 @@ def upgrade():
         batch_op.add_column(sa.Column('site', sa.String))
 
 def downgrade():
-    with op.batch_alter_table("schedule_entries") as batch_op:
-        batch_op.drop_column(sa.Column('visible'))
-        batch_op.drop_column(sa.Column('site'))
+    with op.batch_alter_table("games") as batch_op:
+        batch_op.drop_column('visible')
+        batch_op.drop_column('site')

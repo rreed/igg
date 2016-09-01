@@ -21,4 +21,4 @@ def upgrade():
 
 def downgrade():
     with op.batch_alter_table("games") as batch_op:
-        batch_op.drop_column(sa.Column('buzz'))
+        batch_op.drop_column('buzz')
