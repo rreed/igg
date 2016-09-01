@@ -43,7 +43,7 @@ def show():
         # better names when we finalize charities
         if form.split.data == 'even':
             split = round(amount / 3, 2) # two-digit precision
-            delta = (split * 3) - float(amount)
+            delta = round((split * 3) - float(amount), 2)
             one = split
             two = split
             three = split - delta
