@@ -33,7 +33,7 @@ class TestConfig(BaseConfig):
 
 class ProdConfig(BaseConfig):
     ENV = 'prod'
-    HOST = 'dev2016.iggmarathon.com'
+    HOST = 'iggmarathon.com'
     DEBUG = True
 
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', URL(drivername='sqlite', database='prod.db'))
