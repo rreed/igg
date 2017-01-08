@@ -1,0 +1,94 @@
+{% extends 'base.tmpl' %}
+
+{% macro crewmember(name, image, twitter, steam, favorite, profile) -%}
+    <div class='crew-member'>
+        <div class='image'>
+            <img class="outline screenshot" src="//static.iggmarathon.com/img/crew/{{ image }}"/>
+        </div>
+
+        <div class='info'>
+            <h2 class='name expanded dark-shadow'> {{ name }} </h2>
+            <h4 class='info-bar expanded'>
+                <a href='https://twitter.com/{{twitter}}' class='twitter'>@{{ twitter }}</a>
+                &nbsp;|&nbsp;
+                <a href='https://steamcommunity.com/id/{{steam}}' class='steam'>Steam</a>
+                &nbsp;|&nbsp;
+                <span class='favorite'> Favorite Indie Game: {{ favorite }} </span>
+            </h4>
+            <div class='divider'></div>
+            <div class='profile light-shadow'> {{ profile }} </div>
+        </div>
+        <div class='clear'></div>
+    </div>
+{%- endmacro %}
+
+{% block head %}
+    {{ super() }}
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/crew.css') }}"/>
+{% endblock %}
+
+{% block content %}
+    <div id="pagetitle">The Crew!</div>
+
+    <div id='crew' class="outer-border grid-10 push-1">
+        {{ crewmember(
+            'Matt Rasmussen', 'matt.png', 'mrasmus', 'mrasmus', 'Bastion',
+            "Matt's been gaming since before he can remember; being fairly platform-agnostic as a kid, he grew a broad appreciation of all sorts of different games. It was his dumb idea that got us all into this mess. You'll recognize him on-stream as the hatted one making all the horrible puns."
+        )}}
+
+        {{ crewmember(
+            'Shamayel Daoud', 'shamayel.png', 'karamisaurus', 'karamisaurus', 'Jamestown',
+            "Shamayel has been into gaming since her father brought home an NES at the tender age of 6. A recent transplant to the Bay Area, Shamayel moved to get away from Matt's terrible puns. She delights in deadpan humor, hanging out in speakeasies, and leading long administrative meetings."
+        )}}
+
+        {{ crewmember(
+            'Zach Cameron', 'zach.png', 'aerothopter', 'aerothopter', "No Man's Sky",
+            "Zach's basically a one-man show. After designing the Cloudboat Armada site, he went to beast mode and designed this site, too. Although he was introduced to the indie gaming scene relatively recently, his belief that games can be art drives his interest in playing cool indie titles. He's also single and likes to cook ... ladies."
+        )}}
+
+        {{ crewmember(
+            'Elena Churilov', 'elena.png', 'fiskmeshi', 'foodshooter', 'Dwarf Fortress',
+            "Elena was raised on a steady diet of NetHack and Dungeon Keeper. Since then, she has taken up the task of writing nearly all of the text on this website. Although she has returned to her ancestral homeland to delve into the deeper mysteries of Psychology, she still makes a yearly pilgrimage back to us for IGG."
+        )}}
+
+        {{ crewmember(
+            'Daniel Ching', 'daniel.png', 'zizhou', 'zizhou', 'Frozen Synapse',
+            "Daniel has been enjoying 'indie' games since he found out he could download freeware from the internet on a state of the art dial-up connection. When not gallivanting in cyberspace, he enjoys useless facts and diminutive equines. He is still trying to figure out why we all refer to ourselves in the third person, even though we wrote our own bios."
+        )}}
+
+        {{ crewmember(
+            'Garrett Williams', 'garrett.png', 'yggdrasil03', 'yggdrasil33', 'Minecraft',
+            "When Garrett is done engineering at work, he spends his free time building things in games. He then proceeds to blow them up (something which is usually frowned upon at his workplace). As a loyal crewman, he magnanimously accepts the blame when things go wrong, and is thus misperceived as a Cylon or a spy by his crewmates. Despite these accusations, he soldiers on, doing what he can to bring joy to the lives of sick children."
+        )}}
+
+        {{ crewmember(
+            'Alexander Young', 'xander.png', 'blerggames', 'jovenismo', 'SpaceChem',
+            "Xander is some kind of exotic side dish."
+        )}}
+
+        {{ crewmember(
+            'Colin Wheelock', 'colin.png', 'satchamobob', 'Satcha', 'Braid',
+            "Colin is a games user researcher currently working for the Games and Playable Media program for UC Santa Cruz. He spends most of his time extolling the virtues of playtesting to his students or brushing up on the latest methodologies. When he's not conducting video game science, Colin partakes in a number of other activities, such as cooking, skiing, and caring way too much about pro wrestling. He currently holds the record for most tables flipped at IGG."
+        )}}
+
+        {{ crewmember(
+            'David Emerson', 'david.png', 'daemerson', 'daemerson', 'Recettear',
+            "David is an artist that's getting a degree in accounting. When he's not being full of contradictions you can usually find him in front of any screen on which vidjamagames are occurring. In fact, he's won the award for longest playtime at IGG two years in a row, and has the skills to match... details that I wonder why he didn't think to mention in his own bro."
+        )}}
+
+        {{ crewmember(
+            'David Lorant', 'lorant.png', 'ratteler50', 'ratteler50', 'Audiosurf',
+            "David met the rest of the crew during his time at UCSD studying Math and Computer Science. He finally faced his fear of entering the real world, and left UCSD with a masters in computer science to begin work for his Google overlord. He grew up on text adventures and point and click adventures, and has still yet to find a genre he likes more, though RPGs come close."
+        )}}
+
+        {{ crewmember(
+            'Sean Cross', 'sean.png', 'xobs', 'xobs', 'Fez',
+            "Sean enjoys getting elbow-deep in code and hardware. He'd be the one using a hex editor to get $2bn in Sim City, and poking random memory locations in Ocarina of Time. If something goes wrong but nobody's quite sure how or why, he's probably got something to do with it."
+        )}}
+
+        {{ crewmember(
+            'Russel Reed', 'russel.png', 'forneuslex', 'marquisforneus', 'Transistor',
+            "Wrote most of the website you're reading right now. (Except the broken parts. Those were totally someone else.) When not doing that, they're yelling at Twitter about weird music, making bad jokes, or petting their obnoxiously loud cat."
+        )}}
+    </div>
+{% endblock %}
