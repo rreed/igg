@@ -74,12 +74,13 @@ def create_app(app_config):
 
     login_manager.login_view = 'login.show'
 
-    admin.add_view(AdminModelView(Challenge, db.session))
+    admin.add_view(AdminModelView(Challenge, db.session, endpoint='challengeadmin'))
     admin.add_view(AdminModelView(Game, db.session))
     admin.add_view(AdminModelView(MarathonInfo, db.session))
     admin.add_view(AdminModelView(Prize, db.session))
     admin.add_view(AdminModelView(Interview, db.session))
     admin.add_view(AdminModelView(ScheduleEntry, db.session))
+    admin.add_view(AdminModelView(User, db.session))
     admin.add_view(ImageView(Image, db.session))
 
     login_manager.init_app(app)
@@ -110,7 +111,9 @@ class AdminModelView(ModelView):
     column_hide_backrefs = False
 
     def is_accessible(self):
-        return current_user.is_authenticated
+        if not current_user.is_anonymous:
+            return current_user.is_admin()
+        return False
 
     def inaccessible_callback(self, name, **kwargs):
         # redirect to login page if user doesn't have access
