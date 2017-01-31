@@ -1,3 +1,12 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+$(document).ready(function()
+{
+    if(!$("#social-media").is(":visible")){
+        $("#sm-blocked").show();
+    }
+});
+</script>
 <div id="header">
     <div id="logo">
         <img src="{{ url_for('static', filename='img/transparent.png')}}" usemap="#logo-map"/>
@@ -5,6 +14,9 @@
             <area href="{{ url_for('index.show') }}" shape="poly" coords="151,0, 182,11, 204,66, 210,131, 198,153, 12,153, 1,132, 7,67, 29,10, 58,0"
             alt="Home :: Indie Games for Good" title="Home :: Indie Games for Good"/>
         </map>
+    </div>
+    <div id="sm-blocked" class="header-child" style="width:252px;display:none;">
+        &nbsp; 
     </div>
     <div id="social-media" class="header-child">
         <ul>
