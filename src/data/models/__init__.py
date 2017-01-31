@@ -7,3 +7,4 @@ from .marathon_info import MarathonInfo
 from .prize import Prize
 from .schedule_entry import ScheduleEntry
 from .user import User
+from .crew import Crew
