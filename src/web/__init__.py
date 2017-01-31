@@ -9,7 +9,7 @@ from flask_admin import form
 
 from routes import register_routes
 from extensions import login_manager, admin, mail
-from ..data.models import Challenge, Game, Image, Interview, MarathonInfo, Prize, ScheduleEntry, User
+from ..data.models import Challenge, Game, Image, Interview, MarathonInfo, Prize, ScheduleEntry, User, Crew
 from ..data.db import db
 
 def create_app(app_config):
@@ -81,6 +81,8 @@ def create_app(app_config):
     admin.add_view(AdminModelView(Interview, db.session))
     admin.add_view(AdminModelView(ScheduleEntry, db.session))
     admin.add_view(AdminModelView(User, db.session))
+    admin.add_view(AdminModelView(Crew, db.session))
+    
     admin.add_view(ImageView(Image, db.session))
 
     login_manager.init_app(app)

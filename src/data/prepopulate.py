@@ -1,7 +1,7 @@
 import bcrypt
 import datetime
 
-from .models import Challenge, Game, Interview, MarathonInfo, Prize, ScheduleEntry, User
+from .models import Challenge, Game, Interview, MarathonInfo, Prize, ScheduleEntry, User, Crew
 from .db import db
 from ..settings import app_config
 
@@ -94,4 +94,22 @@ def prepopulate_database():
         current_schedule_entry=test_play.id
     )
 
+    Crew.create(
+        name = 'Matt Rasmussen',
+        image = 'matt.png',
+        twitter = 'mrasmus',
+        steam = 'mrasmus',
+        favorite = 'Bastion',
+        profile = """Matt's been gaming since before he can remember; being fairly platform-agnostic as a kid, he grew a broad appreciation of all sorts of different games. It was his dumb idea that got us all into this mess. You'll recognize him on-stream as the hatted one making all the horrible puns.""",
+        order = 0
+    )
+    Crew.create(
+        name = 'Shamayel Daoud',
+        image = 'shamayel.png',
+        twitter = 'karamisaurus',
+        steam = 'karamisaurus',
+        favorite = 'Jamestown',
+        profile = """Shamayel has been into gaming since her father brought home an NES at the tender age of 6. A recent transplant to the Bay Area, Shamayel moved to get away from Matt's terrible puns. She delights in deadpan humor, hanging out in speakeasies, and leading long administrative meetings.""",
+        order = 5
+    )
     print 'Prepopulated database with sample data'
