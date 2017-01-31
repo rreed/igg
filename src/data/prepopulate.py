@@ -18,8 +18,18 @@ def prepopulate_database():
         password=hashed_pw,
         salt=salt,
         email='example@example.com',
-        created_at=datetime.datetime.utcnow()
+        created_at=datetime.datetime.utcnow(),
+        admin = True
     )
+    normal_user = User.create(
+        username='tilted_painting',
+        password=hashed_pw,
+        salt=salt,
+        email='example@example.example',
+        created_at=datetime.datetime.utcnow(),
+        admin = False
+    )
+
 
     test_game = Game.create(name='Test Game', developer='Test Dev')
     brave_earth = Game.create(name='Brave Earth: Epilogue', developer='Not Kayin')
