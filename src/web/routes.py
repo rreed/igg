@@ -35,6 +35,7 @@ def register_routes(app):
     route('/json/schedule', schedule.as_json, methods=['GET'])
     route('/ajax/schedulemod', schedule.ajax_create, methods=['POST'])
     route('/ajax/elapsed', schedule.elapsed, methods=['GET'])
+    route('/ajax/marathoninfo', schedule.marathon_info, methods=['POST'])
 
     from .views import interviews
     route('/interviews', interviews.show, methods=['GET'])

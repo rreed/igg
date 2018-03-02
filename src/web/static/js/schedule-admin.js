@@ -91,13 +91,10 @@ function modEvent(event, delta, revertFunc){
     edit(current_event_id, get_dialog_info(), 'edit');
 }
 
-//TODO: part of one of the button scripts:
 
 function saveCurrentEvent() {
     console.log('"saved"')
 
-    //TODO: all the checks(datetime/game/other?)
-    
     if ($('#game_select').val() <= 0){
         alert('invalid game')
         console.log('trying to save invalid game id ' +  $('#game_select').val())
@@ -137,6 +134,42 @@ function adminCurrentEvent() {
     $("#dialog_form").dialog("destroy");
 }
 
+//set selected game as current in Marathon Info
+function currentMarathonInfo() {
+    if (current_event_id < 0){
+        alert('save entry before setting current game')
+        console.log('trying to set marathon schedule with uninitialized schedule')
+        return false
+    }
+    var current_game = get_dialog_info()['game']
+    var data = {'action':'current', 'game_id':current_game }
+    console.log('setting ' + current_game + ' as current game')
+    $.post('/ajax/marathoninfo', data,
+        function (success) {
+            console.log('AJAX success: server says, "' + success + '"')
+            $('#dialog_form').dialog('destroy');
+        }
+    );
+}
+
+//set selected game as next in Marathon Info
+function nextMarathonInfo() {
+    if (current_event_id < 0){
+        alert('save entry before setting next game')
+        console.log('trying to set marathon schedule with uninitialized schedule')
+        return false
+    }
+    var current_game = get_dialog_info()['game']
+    var data = {'action':'next', 'game_id':current_game }
+    console.log('setting ' + current_game + ' as current game')
+    $.post('/ajax/marathoninfo', data,
+        function (success) {
+            console.log('AJAX success: server says, "' + success + '"')
+            $('#dialog_form').dialog('destroy');
+        }
+    );
+
+}
 //remove event by id (serverside)
 function remove(event_id) {
     var data = {'action':'delete', 'pk': event_id}
