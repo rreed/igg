@@ -1,21 +1,79 @@
 {% extends 'base.tmpl' %}
 
+
 {% block head %}
     {{ super() }}
     <!-- mmmm tons of dependencies for a calendar :3 -->
-    <script type="text/javascript" src='//code.jquery.com/jquery-2.2.4.min.js'></script>
+    
     <script type="text/javascript" src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js'></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.3/fullcalendar.min.js"></script>
-    <script type="text/javascript" src="//fullcalendar.io/js/fullcalendar-scheduler-1.3.2/scheduler.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/fullcalendar-scheduler@1.3.2/dist/scheduler.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link rel='stylesheet' type='text/css' href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.3/fullcalendar.min.css"/>
 
-    <script type="text/javascript" src="{{ url_for('static', filename='js/schedule.js') }}"></script>
+    {% if current_user.is_admin %}
+        I am admin
+        <script type="text/javascript" src="{{ url_for('static', filename='js/schedule-admin.js') }}"></script>
+        <link rel='stylesheet' type='text/css' href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.datetimepicker.js') }}"></script>
+        <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/jquery.datetimepicker.css') }}"/>
+
+    {% else %}
+        <script type="text/javascript" src="{{ url_for('static', filename='js/schedule.js') }}"></script>
+            {% endif %}
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/schedule.css') }}"/>
 {% endblock %}
 
 {% block content %}
+
     <div id="pagetitle">Schedule</div>
 
     <!-- will be replaced with the calendar on load -->
-    <div id='calendar'></div>
+    <div id='calendar' style='{% if current_user.is_admin %}font-size: 12px;{% endif %} z-index:1;'></div>
+
+    {% if current_user.is_admin %}
+        <div id="dialog_form" style="display: none; z-index:9001;">
+            <div style="">
+                <input name="event" id="event_name" placeholder="Title (optional)"><br>
+                <input class="game_autocomplete" placeholder="Search Game"><br/><br/>
+                <select name="game" id="game_select" class="object_select"></select>
+                <br>
+               <!-- 
+               <select name="interview" id="interview_select" class="object_select"></select>
+                <br>
+                <select name="raffle" id="raffle_select" class="object_select"></select><br/><br/> 
+                -->
+                <input name="start" id="dt_start" type="text" class="datetimepicker" style="width:100px"> -
+                <input name="end" id="dt_end" type="text" class="datetimepicker" style="width:100px"><br/><br/>
+                <div id="dialog_info" class="innerborder"></div><br>
+                <div id="oopscommenttext" class="innerborder"><textarea id="opscommenttext"></textarea></div><br>
+                <button name="save" onclick="saveCurrentEvent(); ">Save</button>
+                <button name="delete" onclick="deleteCurrentEvent();">Delete</button>
+                <button name="gotoadmin" onclick="adminCurrentEvent();">Admin</button>
+                <br>
+                <button name="set_current" onclick="currentMarathonInfo(); ">Make Current</button>
+                <button name="set_next" onclick="nextMarathonInfo();">Make Next</button>
+
+            </div>
+
+        </div>
+
+	<style type="text/css">
+	    .timeline {
+		left: 59px;
+                position: absolute;
+		border: none;
+		border-top: 2px solid lightskyblue;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		z-index: 99;
+	    }
+	    .ui-autocomplete {
+		z-index: 101; /*Above ui-top or w/e*/
+	    }
+	</style>
+
+    {% endif %}
+
 {% endblock %}

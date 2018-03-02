@@ -19,6 +19,7 @@ def register_routes(app):
     from .views import games
     route('/games', games.show, methods=['GET'])
     route('/games/suggest', games.suggest, methods=['GET', 'POST'])
+    route('/json/games', games.as_json, methods=['GET'])
 
     from .views import faq
     route('/faq', faq.show, methods=['GET'])
@@ -32,7 +33,9 @@ def register_routes(app):
     from .views import schedule
     route('/schedule', schedule.show, methods=['GET'])
     route('/json/schedule', schedule.as_json, methods=['GET'])
+    route('/ajax/schedulemod', schedule.ajax_create, methods=['POST'])
     route('/ajax/elapsed', schedule.elapsed, methods=['GET'])
+    route('/ajax/marathoninfo', schedule.marathon_info, methods=['POST'])
 
     from .views import interviews
     route('/interviews', interviews.show, methods=['GET'])

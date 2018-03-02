@@ -1,5 +1,5 @@
 from sqlalchemy.schema import Column, ForeignKey
-from sqlalchemy.types import Boolean, Integer, String, DateTime
+from sqlalchemy.types import Boolean, Integer, String, DateTime, Text
 from sqlalchemy.orm import relationship
 
 from ..base import Base
@@ -20,6 +20,7 @@ class ScheduleEntry(Base, CRUDMixin):
     interview = relationship('Interview')
     prize_id = Column('prize_id', Integer, ForeignKey('prizes.id'))
     prize = relationship('Prize')
+    opscomment = Column('opscomment', Text)
 
     def __unicode__(self):
         return self.title

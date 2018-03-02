@@ -2,6 +2,7 @@ import datetime
 from math import pow, ceil, log
 
 from sqlalchemy.schema import Column, ForeignKey
+from sqlalchemy.orm import relationship
 from sqlalchemy.types import Boolean, DateTime, Integer, String, Float
 
 from ..base import Base
@@ -17,8 +18,11 @@ class MarathonInfo(Base, CRUDMixin): # realistically almost always Update
     start = Column('start', DateTime, nullable=False)
     hours = Column('hours', Integer)
     current_game_id = Column('current_game_id', Integer, ForeignKey('games.id'), nullable=False)
+    current_game = relationship('Game', foreign_keys = [current_game_id])
     next_game_id = Column('next_game_id', Integer, ForeignKey('games.id'), nullable=False)
+    next_game = relationship('Game', foreign_keys = [next_game_id])
     current_schedule_entry = Column('current_schedule_entry', Integer, ForeignKey('schedule_entries.id'), nullable=False)
+    current_schedule = relationship('ScheduleEntry')
 
     def stage(self):
         now = datetime.datetime.now()

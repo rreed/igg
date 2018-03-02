@@ -4,6 +4,9 @@ $(document).ready(function() {
         height: 600,
         editable: false,
         //selectable: true,
+        
+        //defaultDate: '2038-01-19',//for dev purposes only REMOVE REMOVE REMOVE
+        
         allDaySlot: false,
         allDayDefault: false,
         defaultView: 'agendaDay',
@@ -19,8 +22,8 @@ $(document).ready(function() {
         buttonText: {next: '❯❯', prev: '❮❮'},
         resources: [
             {title: 'Games', id: 'game'},
-            {title: 'Interviews', id: 'interview'},
-            {title: 'Giveaways', id: 'prize'}
+            //{title: 'Interviews', id: 'interview'},
+            //{title: 'Giveaways', id: 'prize'}
         ],
         eventSources:[
             {

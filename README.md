@@ -49,3 +49,10 @@ mail.send(msg)
 
 ## Production
 From the project root: `gunicorn src.wsgi:igg`
+
+##Misc Notes
+
+For whatever reason, a game with an ID of "2" will display "Setting up the next 
+game, please stand by..." on the page template instead of its title. This is an 
+intentional function, though I have no idea what purpose it serves(see 
+navbar.tmpl for more information).
