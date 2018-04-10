@@ -1,0 +1,230 @@
+@font-face {
+    font-family: "pixChicago";
+    src: local("FROODY"), url( "{{ STATIC_URL }}overlay/pixChicagoUpdate.ttf" ); /* non-IE */
+}
+
+html, body {
+    margin:0;
+    padding:0;
+    background-color: transparent;
+    font: 8px "pixChicago", Courier New, Arial, sans-serif;
+    line-height: 14px;
+}
+
+h1{
+    font-size: 16px;
+    line-height: 32px;
+    letter-spacing: 1px;
+    margin-top: 0px;
+    color: white;
+    text-shadow: 1px 1px rgba(0,0,0,.15);
+}
+
+h2{
+    font-size: 12px;
+    line-height: 32px;
+    letter-spacing: 1px;
+    margin-top: 0px;
+    color: #553886;
+    text-shadow: 1px 1px rgba(255,255,255,.15);
+
+}
+
+p{
+    font-size: 12px;
+    line-height: 21px;
+    margin: 0;
+    color: white;
+}
+
+.info_openraffles p {
+    font-size: 10px;
+}
+
+.stats{
+    font-size: 16px;
+    line-height: 28px;
+    margin: 5px 0 0 0;
+    color: white;
+    text-shadow: -1px -1px rgba(0,0,0,.4);
+}
+
+.totaltext {
+    color: rgb(255, 214, 66);
+}
+
+.donate{
+    font-size: 24px;
+    line-height: 64px;
+    margin-bottom: 0;
+    display: inline-block;
+}
+
+.message{
+    margin-top: 3px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.align-left{
+    text-align: left;
+}
+
+.align-right{
+    text-align: right;
+}
+
+.inline-block{
+    display: inline-block;
+}
+
+.websites {
+    font-size: 8px;
+    text-shadow: 1px 1px rgba(255,255,255,.25);
+    margin-bottom: 0;
+}
+
+div.slide_container {
+    margin:0;
+    padding:0;
+    position:relative;
+    width: 1280px;
+    margin-top:0px;
+    background-color: #aa7dc1;
+    border-bottom: 2px solid #9b70b5;
+}
+
+ul.slide {
+    margin:0;
+    padding:0;
+    height:80px;
+    width: 1280px;
+    list-style-type:none;
+    position: relative;
+}
+
+ul.slide li {
+    float:left;
+    list-style-type:none;
+    text-align:center;
+    font-size: 16px;
+    padding-top: 8px;
+    line-height: 28px;
+    color: white;
+    text-shadow: -1px -1px rgba(0,0,0,.4);
+}
+
+.over {
+    position:fixed;
+    top:0;
+    z-index:100;
+}
+
+.base {
+    height: 720px;
+    width: 1280px;
+}
+
+#couch{
+    position: absolute;
+    top: 416px;
+    left: 740px;
+    width: 540px;
+    height: 304px;
+    background-color: transparent;
+}
+
+#game{
+    position: absolute;
+    top: 0px;
+    left 0px;
+    width: 860px;
+    height: 484px;
+    background-color: transparent;
+}
+
+#wrapper_left{
+    position: absolute;
+    top: 0;
+    left: 860px;
+    width: 400px;
+    height: 396px;
+    background-color: #c8a7d9;
+    padding: 10px;
+    text-align: center;
+}
+
+#wrapper_bottom{
+    position: absolute;
+    top: 484;
+    left: 0;
+    width: 700px;
+    height: 211px;
+    background-color: #c8a7d9;
+    padding: 5px 20px 20px 20px;
+    text-align: center;
+}
+
+img{
+    width: 100%;
+}
+
+#cba_info, #cpc_info, #logo{
+    display: inline-block;
+    width: 25%;
+    margin: 0;
+    margin-bottom: 0;
+}
+
+#logo{
+    width: 35%;
+}
+
+
+#info_wrapper{
+    position: absolute;
+    width: 700px;
+    bottom: 0;
+
+}
+
+#info_boxes{
+    padding-top: 40px;
+}
+
+.info_box{
+    height: 71px;
+    width: 178px;
+    padding: 3px;
+}
+
+.info_box, .message_box{
+    display: inline-block;
+    background-color: #aa7dc1;
+    border: 2px solid #8e5dab;
+    border-top-color: #bb99cf;
+    border-left-color: #bb99cf;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.2) inset, -1px -1px 1px rgba(255,255,255,.1) inset;
+    overflow: hidden;
+    margin: 5px;
+}
+
+.message_box{
+    width: 366px;
+    height: 45px;
+    margin: 5px auto;
+    padding: 5px 10px;
+}
+
+.nowplaying, .rafflebox{
+    height: 56px;
+}
+
+#guide{
+    width: 1280px;
+    height: 1px;
+    background-color: black;
+    position: absolute;
+    top: 360px;
+    z-index: 99;
+}

@@ -1,0 +1,107 @@
+<html>
+
+    <head>
+
+        <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/overlay.css') }}"/>
+        <script type="text/javascript" src='//code.jquery.com/jquery-2.2.4.min.js'></script>
+        <script type="text/javascript" src="https://cdn.pubnub.com/pubnub.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/overlay.js') }}"></script>
+        <style type='text/css'>
+	    @font-face {
+                font-family: "pixChicago";
+                src: local("FROODY"), url( {{ url_for('static', filename='font/pixChicagoUpdate.ttf') }} ); 
+            }
+	</style> 
+    
+    </head>
+
+    <body>
+        <div class="over">
+            <div id="pushblock" style="width:100%; height:30px; display:none;"></div>
+            <div class="wrapper" style="position:relative;">
+                <div class="slide_container">
+                    <ul class="slide"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="base">
+
+            <div id="game"></div>
+            <div id="couch"></div>
+
+            <div id="wrapper_left">
+
+
+                <div id="info_boxes">
+                    <div class="info_box">
+                        <h2>Total Donations</h2>
+                        <h3 class="stats totaltext">$<span class="info_total"></span></h3>
+                    </div>
+                    <div class="info_box">
+                        <h2>Local Time</h2>
+                        <h3 class="stats" id="localtime"></h3>
+                    </div>
+                    <div class="info_box">
+                        <h2>To Hour <span class="info_nexthour"></span></h2>
+                        <h3 class="stats">$<span class="info_nexthourcost"></span></h3>
+                    </div>
+                    <div class="info_box">
+                        <h2>Timer</h2>
+                        <h3 class="stats" id="marathoncounter"></h3>
+                    </div>
+                    <div clas="message_box" style="display:none;">
+                        <p class="message">Pertinent raffle messages will go here. Don't forget to donate! </p>
+                    </div>
+                    <div class="message_box nowplaying">
+                        <h2 class="align-left" style="margin-bottom: 0px;">Now Playing:</h2>
+                        <p class="message"><span class="info_now_playing"></span></p>
+                    </div>
+                    <div class="message_box nowplaying">
+                        <h2 class="align-left" style="margin-bottom: 0px;">On Deck:</h2>
+                        <p class="message"><span class="info_nextgame"></span></p>
+                    </div>
+
+                    <!--who cares about raffles anyway
+                        <div class="message_box rafflebox">
+                        <h2 class="align-left" style="margin-bottom: 0px;">Current Raffles:</h2>
+                        <div class="message info_openraffles"></div>
+                    </div>
+                    -->
+                </div>
+
+            </div>
+
+            <div id="wrapper_bottom">
+
+                <h2 class="donate" style="margin-bottom: 0px">Donate now at</h2>
+                <h1 class="donate">&nbspIGGMarathon.com</h1>
+                <h2 class="donate">!</h2>
+
+                <div id="info_wrapper">
+                    <div id="cba_info">
+                        <img src='{{ url_for('static', filename='img/cba_logo_narrow.png')}}'></img>
+                        <h2 class="websites">CloudboatArmada.com</h2>
+                    </div>
+                    <div id="logo">
+                        <img src='{{ url_for('static', filename='img/logo_mini_vector_FINAL_SMALL.png')}}'></img>
+                    </div>
+
+                    <div id="cpc_info">
+                        <img src='{{ url_for('static', filename='img/childsplay_mini.png')}}' style="width: 70%"></img>
+                        <h2 class="websites">&nbsp;</h2>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+        <br />
+        <br />
+
+    <br />
+
+    <a href='#' id='testdonor'>click me for test donor</a>
+    </body>
+
+</html>
+
