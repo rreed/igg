@@ -1,19 +1,39 @@
 {% extends 'base.tmpl' %}
 
-{% macro render_game(id, name, developer, pos) -%}
-    <div data-id="{{id}}" class="item {{pos}} list-title">
+{% macro render_game(id, name, developer, pos, vis) -%}
+    <div data-id="{{id}}" class="item {{pos}} list-title" {% if not vis %}style="background-color:black"{% endif %}>
         <div class="list-name"><h2>{{name}}</h2></div>
         <div class="list-dev"><h2>{{developer}}</h2></div>
-        <div class="list-thresh"><div class="progressbar" style="background-position: -124px 0px;"></div></div>
+        <div class="list-thresh">
+            <div class="progressbar" style="background-position: -124px 0px;"></div>
+        </div>
     </div>
+    <div class="list-content" id="content_{{ id }}"></div> 
 {%- endmacro %}
 
 {% block head %}
     {{ super() }}
+    <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.3/jquery.tipsy.css'/>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.3/jquery.tipsy.js'></script>
+
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/games.css') }}"/>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/games.js') }}"></script>
+
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            console.log('ready')  
+            $('#hullo').tipsy();
+        
+        })
+    </script>
+
 {% endblock %}
 
 {% block content %}
+    <p>
+    <a id="hullo" href="#" original-title="Hello World">Hover over me</a>
+    </p>
+    
     <div id="pagetitle">The Games</div>
 
     <div class="inner pull-1">
@@ -22,7 +42,7 @@
     </div>
 
     <div class="grid-10 prefix-1 no-left-margin no-right-margin">
-        <div class="outer-border list-header-outer top">
+        <div class="outer-border list-header-outer top" >
             <div class="item list-title-top">
                 <div class="list-name"><h1>Name</h1></div>
                 <div class="list-dev"><h1>Developer</h1></div>
@@ -30,12 +50,20 @@
             </div>
         </div>
 
-        <div class="outer-border list">
+        <div id="accordion" class="outer-border list">
             {% for game in games %}
                 {% if game.visible %}
-                    {{ render_game(game.id, game.name, game.developer, loop.cycle('odd', 'even')) }}
+                    {{ render_game(game.id, game.name, game.developer, loop.cycle('odd', 'even'), game.visible) }}
+
                 {% endif %}
             {% endfor %}
+            {% if current_user.is_admin %}
+                {% for game in games %}
+                    {% if not game.visible %}
+                        {{ render_game(game.id, game.name, game.developer, loop.cycle('odd', 'even'), game.visible) }}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

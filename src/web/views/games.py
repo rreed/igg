@@ -19,6 +19,10 @@ def suggest():
 
     return render_template('games/suggest.tmpl', form=form)
 
+def detail(game_id):
+    game = db.session.query(Game).filter(Game.id == game_id).first()
+    return render_template('games/detail.tmpl', game=game)
+
 #machine digestible list of games
 def as_json():
     if request.args.get('id'):
