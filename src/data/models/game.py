@@ -24,8 +24,7 @@ class Game(Base, CRUDMixin):
     
     def add_buzz(self, donation_amount):
         self.buzz += donation_amount
-        self.save()
-        Game.update_relative_buzz()
+        self.update_buzz()
 
     def update_buzz(self):
         self.normalized_buzz = self.buzz/(self.plays+1)**2 * 10

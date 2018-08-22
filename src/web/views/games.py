@@ -8,8 +8,8 @@ from ...data.models import Game
 
 # GET /games
 def show():
-    Game.update_relative_buzz(db)
     games = db.session.query(Game).order_by(-Game.normalized_buzz, Game.name).all()
+    Game.update_relative_buzz(db)
     return render_template('games/show.tmpl', games=games)
 
 def suggest():

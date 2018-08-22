@@ -34,13 +34,17 @@ def prepopulate_database():
     test_game = Game.create(name='Test Game', 
         developer='Test Dev', 
         description='The Dark Souls of testing data.',
-        plays=0    
+        plays=0,
+        buzz=0,
+        normalized_buzz=0,
     )
     brave_earth = Game.create(name='Brave Earth: Epilogue', 
         developer='Not Kayin', 
         description='It\'s not a real game.',
         site='https://kayin.moe',
-        plays=0
+        plays=0,
+        buzz=100,
+        normalized_buzz=0,
     )
 
     Challenge.create(name='Straighten the painting!', total='1000.00')
