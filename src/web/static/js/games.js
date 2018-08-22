@@ -1,10 +1,3 @@
-//$(function() {
-//    $('#thresholdtooltip').tipsy({trigger: 'hover', gravity: 'n',opacity:0.95});
-//    $('.list-title').tipsy({trigger: 'hover', gravity: 'n',opacity:0.95});
-//});
-//$(function(){ 
-//    $('#threshholdtooltip').tipsy()
-//});
 $(function() {
     $("div#accordion div.list-title").click(
         function(){
@@ -31,6 +24,14 @@ $(function() {
     );
 });
 
+//tooltips
+$(function() {
+    console.log('ready')  
+    $('.tooltip').tipsy({trigger: 'hover', gravity: 'n',opacity:0.95}); 
+    $('#thresholdtooltip').tipsy({trigger: 'hover', gravity: 'n',opacity:0.95}); 
+});
+
+// buh?
 //    $(function() {
 //        if (window.location.hash) {
 //            document.getElementById(window.location.hash.substring(1)).click();

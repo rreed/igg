@@ -35,3 +35,20 @@
 
 }
 
+.em-yellow {
+    color:#ffd642;
+}
+
+/*progress bar hack*/
+
+.progressbar {
+    background-color: #74599d;
+    padding: 2px;
+    width: 80%;
+}
+
+.progressbar > div {
+    background-color: #ffd642;
+    height: 15px;
+
+}

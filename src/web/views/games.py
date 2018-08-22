@@ -8,7 +8,8 @@ from ...data.models import Game
 
 # GET /games
 def show():
-    games = db.session.query(Game).all()
+    Game.update_relative_buzz(db)
+    games = db.session.query(Game).order_by(-Game.normalized_buzz, Game.name).all()
     return render_template('games/show.tmpl', games=games)
 
 def suggest():
@@ -37,6 +38,7 @@ def as_json():
             'dev': game.developer,
             'site': game.site,
             'buzz': game.buzz,
+            'n_buzz' : game.normalized_buzz,
             'pk': game.id,
         })
 
