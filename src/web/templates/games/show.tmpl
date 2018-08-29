@@ -1,41 +1,70 @@
 {% extends 'base.tmpl' %}
 
-{% macro render_game(id, name, developer, pos) -%}
-    <div data-id="{{id}}" class="item {{pos}} list-title">
+{% macro render_game(id, name, developer, pos, vis, n_buzz) -%}
+    <div data-id="{{id}}" class="item {{pos}} list-title tooltip" {% if not vis %}style="background-color:black"{% endif %} title="Click to find out more!">
         <div class="list-name"><h2>{{name}}</h2></div>
         <div class="list-dev"><h2>{{developer}}</h2></div>
-        <div class="list-thresh"><div class="progressbar" style="background-position: -124px 0px;"></div></div>
+        <div class="list-thresh">
+            <div class="progressbar">
+                <div style='width:{{n_buzz}}%;'></div>
+            </div>
+        </div>
     </div>
-{%- endmacro %}
+    <div class="list-content" id="content_{{ id }}"></div> 
+{% endmacro %}
 
 {% block head %}
     {{ super() }}
+    <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.3/jquery.tipsy.css'/>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.3/jquery.tipsy.js'></script>
+
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/games.css') }}"/>
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/tipsy.css') }}"/>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/games.js') }}"></script>
 {% endblock %}
 
 {% block content %}
+    
     <div id="pagetitle">The Games</div>
 
-    <div class="inner pull-1">
-        <!-- game suggestion thingy should go here -->
+    <div class="inner pull_1">
+        {% if current_user.is_active %}
+            <div class="grid_6 push_6 alpha outerborder top">
+                <a href="{{ url_for ('games.suggest') }}" title="Suggest a New Game"><button class="float-right">Suggest a New Game</button></a>
+            </div>
+        {% else %} 
+            <div class="grid_6 push_4 alpha outerborder top">
+                <div class="innerborder form-body align-center purple">
+                    <p>Are we missing a game you want to see? <a href="{{ url_for ('login.show') }}">Log in</a> to suggest it!</p>
+                </div>
+            </div>
+        {% endif %}
         <div class="clear"></div>
     </div>
 
-    <div class="grid-10 prefix-1 no-left-margin no-right-margin">
-        <div class="outer-border list-header-outer top">
+    <div class="grid_10 prefix-1 no-left-margin no-right-margin">
+        <div class="outer-border list-header-outer top" >
             <div class="item list-title-top">
                 <div class="list-name"><h1>Name</h1></div>
                 <div class="list-dev"><h1>Developer</h1></div>
-                <div class="list-thresh"><h1><a class="em-yellow" id="thresholdtooltip" original-title="Buzz is a measurement of donor interest towards games: It's how we figure out what to play.">(?)</a> Buzz</h1></div>
+                <div class="list-thresh"><h1><a class="em-yellow tooltip" id="thresholdtooltip" title="Buzz is a measurement of donor interest towards games: It's how we figure out what to play.">(?)</a> Buzz</h1></div>
             </div>
         </div>
 
-        <div class="outer-border list">
+        <div id="accordion" class="outer-border list">
             {% for game in games %}
                 {% if game.visible %}
-                    {{ render_game(game.id, game.name, game.developer, loop.cycle('odd', 'even')) }}
+                    {{ render_game(game.id, game.name, game.developer, loop.cycle('odd', 'even'), game.visible, game.normalized_buzz) }}
+
                 {% endif %}
             {% endfor %}
+            {% if current_user.is_admin %}
+                {% for game in games %}
+                    {% if not game.visible %}
+                        {{ render_game(game.id, game.name, game.developer, loop.cycle('odd', 'even'), game.visible, game.normalized_buzz) }}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

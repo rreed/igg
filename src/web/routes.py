@@ -18,6 +18,7 @@ def register_routes(app):
 
     from .views import games
     route('/games', games.show, methods=['GET'])
+    route('/games/<game_id>', games.detail, methods=['GET'])
     route('/games/suggest', games.suggest, methods=['GET', 'POST'])
     route('/json/games', games.as_json, methods=['GET'])
 

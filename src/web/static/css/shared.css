@@ -20,6 +20,12 @@ body {
     background-image: url(../img/bg.png);
 }
 
+#super {
+    background-color: #c8a7d9;
+    border: 1px solid #b595ca;
+}
+
+
 h1, h2, h3, h4, h5, h6 {
     border: 0;
     margin: 0;
@@ -531,3 +537,29 @@ textarea {
     border-left-color: rgba(0,0,0,.15);
     border-right-color: rgba(0,0,0,.15);
 }
+
+.align-center {
+    text-align: center;
+}
+
+/* border things */
+.outerborder {
+        margin-top: 13px;
+        margin-bottom: 13px;
+}
+
+.innerborder {
+        padding: 5px 10px;
+        margin: 3px 4px 3px 4px;
+}
+
+.inner{
+        margin: 3px 4px;
+}
+
+#stream, #chatcontainer {
+        border: none;
+        background: transparent;
+}
+
+

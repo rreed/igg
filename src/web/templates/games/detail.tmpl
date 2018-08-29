@@ -1,0 +1,16 @@
+<div class='list-info'>
+    {% if game.description %}
+        <h5 class='eight-px deem-pink'>Description:</h5>
+        <p class='lightshadow'>{{ game.description }}</p>
+    {% endif %}
+    {% if game.site %}    
+        <h5 class='eight-px deem-pink'>Website:</h5>
+        <p class='lightshadow'><a class='white' href='{{ game.site }}' target='_blank'>{{ game.site }}</a></p>
+    {% endif %}
+    {% if current_user.is_admin %}
+        <a href='/admin/game/edit/?url=%2Fadmin%2Fgame%2F&id={{ game.id }}' target='_blank'><button class='float-left'>Edit Game</button></a>
+    {% endif %}
+
+</div>
+
+<div class='clear'></div>
