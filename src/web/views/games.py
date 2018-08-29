@@ -9,7 +9,7 @@ from ...data.models import Game
 # GET /games
 def show():
     games = db.session.query(Game).order_by(-Game.normalized_buzz, Game.name).all()
-    Game.update_relative_buzz(db)
+    Game.update_relative_buzz()
     return render_template('games/show.tmpl', games=games)
 
 def suggest():

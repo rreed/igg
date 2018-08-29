@@ -4,6 +4,8 @@ from sqlalchemy.types import Float, Integer, String, Boolean, Text
 from ..base import Base
 from ..mixins import CRUDMixin
 
+from ...data.db import db
+
 class Game(Base, CRUDMixin):
     __tablename__ = 'games'
 
@@ -25,13 +27,14 @@ class Game(Base, CRUDMixin):
     def add_buzz(self, donation_amount):
         self.buzz += donation_amount
         self.update_buzz()
+        Game.update_relative_buzz()
 
     def update_buzz(self):
         self.normalized_buzz = self.buzz/(self.plays+1)**2 * 10
         self.save()
 
     @classmethod
-    def update_relative_buzz(cls, db):
+    def update_relative_buzz(cls):
         games = db.session.query(cls).filter((cls.normalized_buzz > 0)|(cls.buzz > 0))
         maxbuzz = 0
         for game in games:
