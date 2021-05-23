@@ -99,29 +99,40 @@ def ajax_create():
     return 'no auth' 
 
 #endpoint for setting the marathon info from the schedule popup
-def marathon_info(): 
-    if not current_user.is_anonymous and current_user.is_admin():
-        action = request.form.get('action')
-        game = db.session.query(Game).get(request.form.get('game_id'))
-        marathon = db.session.query(MarathonInfo).first()
-        try:
-            if action == 'current':
-                marathon.current_game = game
-                #game.plays += 1 #strangely, we're not actually counting plays at the moment
-                db.session.commit()
-                return 'set ' + unicode(game.name) + ' as current game'
-            elif action == 'next':
-                marathon.next_game = game
-                db.session.commit()
-                return 'set ' + unicode(game.name) + ' as next game'
-            else:
-                return 'but the future refused to change'
-        except Exception as e:
-            print e
-            return unicode(e)
-        return 'success?'
+def marathon_info():
+    if request.method == 'GET':
+        info = db.session.query(MarathonInfo).first()
+        marathon_info = {
+            'total':        info.total,
+            'hours':        info.hours,
+            'currentgame':  info.current_game.name,
+            'nextgame':     info.next_game.name,
+            'nexthourcost': info.next_hour_cost(),
+        }
+        return json.dumps(marathon_info)
     else:
-        return 'no auth'#this whole auth thing should be a decorator, probably
+        if not current_user.is_anonymous and current_user.is_admin():
+            action = request.form.get('action')
+            game = db.session.query(Game).get(request.form.get('game_id'))
+            marathon = db.session.query(MarathonInfo).first()
+            try:
+                if action == 'current':
+                    marathon.current_game = game
+                    #game.plays += 1 #strangely, we're not actually counting plays at the moment
+                    db.session.commit()
+                    return 'set ' + unicode(game.name) + ' as current game'
+                elif action == 'next':
+                    marathon.next_game = game
+                    db.session.commit()
+                    return 'set ' + unicode(game.name) + ' as next game'
+                else:
+                    return 'but the future refused to change'
+            except Exception as e:
+                print e
+                return unicode(e)
+            return 'success?'
+        else:
+            return 'no auth'#this whole auth thing should be a decorator, probably
 
 def elapsed():
     info = db.session.query(MarathonInfo).first()

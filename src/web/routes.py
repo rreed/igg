@@ -35,7 +35,7 @@ def register_routes(app):
     route('/json/schedule', schedule.as_json, methods=['GET'])
     route('/ajax/schedulemod', schedule.ajax_create, methods=['POST'])
     route('/ajax/elapsed', schedule.elapsed, methods=['GET'])
-    route('/ajax/marathoninfo', schedule.marathon_info, methods=['POST'])
+    route('/ajax/marathoninfo', schedule.marathon_info, methods=['GET', 'POST'])
 
     from .views import interviews
     route('/interviews', interviews.show, methods=['GET'])
@@ -60,3 +60,6 @@ def register_routes(app):
     from .views import prizes
     route('/prizes', prizes.list, methods=['GET'])
     route('/prize/<prize_id>', prizes.show, methods=['GET'])
+
+    from .views import overlay
+    route('/overlay', overlay.show, methods=['GET'])
