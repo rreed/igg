@@ -1,3 +1,4 @@
+
 .list-name {
     float: left;
     width: 294px;
@@ -15,4 +16,39 @@
 .list-thresh {
     float: left;
     width: 113px;
+}
+
+.list-info {
+	width: 274px;
+	padding-right: 20px;
+	float: left;
+}
+.list-content{
+    margin-top: 1px;
+    padding: 8px 19px;
+    display: none;
+    /*width: 274px;*/
+    width: auto;
+    height: auto; 
+    background-color: #7e63a6;
+    border: 1px solid #74599d;
+
+}
+
+.em-yellow {
+    color:#ffd642;
+}
+
+/*progress bar hack*/
+
+.progressbar {
+    background-color: #74599d;
+    padding: 2px;
+    width: 80%;
+}
+
+.progressbar > div {
+    background-color: #ffd642;
+    height: 15px;
+
 }
